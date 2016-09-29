@@ -2,23 +2,21 @@
 
 (function() {
 
-    function securityController(loanService) {
+    function securityController() {
 
         var $ctrl = this;
         $ctrl.showLoanFormSection = false;
-
+        $ctrl.loan.collateralValue=0;
         function calculateCollateralAmount(securityDetails) {
             securityDetails.forEach(function(security) {
-                $ctrl.collateralValue += Number
-                    .parseInt(security[security.length - 1]);
+                $ctrl.loan.collateralValue += Number.parseInt(security[security.length - 1]);
             });
         }
 
-        $ctrl.collateralValue = 0;
         $ctrl.init = function() {
             $ctrl.showLoanFormSection = false;
             //$ctrl.accountDetails = $ctrl.securityDetails;
-            $ctrl.loanAmount = '$' + loanService.loanAmount;
+            //$ctrl.loanAmount = '$' + loanService.loanAmount;
             calculateCollateralAmount($ctrl.securityDetails.data);
         };
 
@@ -26,11 +24,12 @@
 
     }
 
-    securityController.$inject = ['loanService'];
+    securityController.$inject = [];
 
     var config = {
         bindings: {
-            securityDetails: '='
+            securityDetails: '=',
+            loan: '='
         },
         templateUrl: 'loandetails/collateralinfo/security/security.html',
         controller: securityController

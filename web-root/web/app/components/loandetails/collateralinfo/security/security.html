@@ -16,7 +16,7 @@
 				</tr>
 				<tr>
 					<td colspan="5">TOTALS</td>
-					<td ><b>$</b><span ng-bind="$ctrl.collateralValue"></span></td>
+					<td ><b>$</b><span ng-bind="$ctrl.loan.collateralValue"></span></td>
 				</tr>
 			</tbody>
 		</tbody>
@@ -26,13 +26,13 @@
         <div class="col-sm-4">
             <div class="form-group ">
                 <label for="loanAmount ">Loan Notional Amount</label>
-                <input type="text " class="form-control " id="loanAmount " ng-model="$ctrl.loanAmount">
+                <input type="text " class="form-control " id="loanAmount " ng-model="$ctrl.loan.loanAmount">
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group ">
                 <label for="collateralValue ">Collateral Value</label>
-                <input type="text " class="form-control " id="collateralValue" ng-model="$ctrl.collateralValue">
+                <input type="text " class="form-control " id="collateralValue" ng-model="$ctrl.loan.collateralValue">
             </div>
         </div>
         <div class="col-sm-5">

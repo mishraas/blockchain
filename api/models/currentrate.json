@@ -1,4 +1,5 @@
 {
     "rateOfInterest": "4.25%",
-    "rateDescription": "1 month Libor + Spread"
+    "libor": "1 month Libor",
+    "spread" : "Spread"
 }

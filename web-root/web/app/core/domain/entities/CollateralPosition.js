@@ -3,8 +3,8 @@
 (function() {
 
     angular.module('core.domain')
-        .factory('CollateralAccount', [function() {
-            var CollateralAccount = function(data) {
+        .factory('CollateralPosition', [function() {
+            var CollateralPosition = function(data) {
                 if (data instanceof Object) {
                     this.id = data.id;
                     this.securityName = data.securityName;
@@ -16,11 +16,11 @@
                 }
             };
 
-            CollateralAccount.prototype = {
+            CollateralPosition.prototype = {
 
             };
 
-            return CollateralAccount;
+            return CollateralPosition;
         }]);
 
 })();

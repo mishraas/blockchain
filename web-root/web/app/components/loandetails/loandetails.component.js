@@ -2,19 +2,21 @@
 
 (function() {
 
-    var loandetailsController = function(loanService) {
+    var loandetailsController = function(loanService, EntityMapper, Loan) {
         var $ctrl = this;
         $ctrl.closeOtherAccordian = true;
         $ctrl.openLoanInfoSection = true;
         $ctrl.openCollateralInfoSection = false;
+        $ctrl.loan = new EntityMapper(Loan).toEntity({});
 
         $ctrl.expandCollateralInfo = function() {
             $ctrl.openCollateralInfoSection = !$ctrl.openCollateralInfoSection;
         };
 
+        //TODO: Add through life cycle hook
         $ctrl.init = function() {
             loanService.getUsesOfLoanProceeds().then(function(response) {
-                $ctrl.usesOfLoanProceeds = response.data['useOfLoanProceeds'];
+                $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
             });
 
         };
@@ -22,7 +24,7 @@
 
     };
 
-    loandetailsController.$inject = ['loanService'];
+    loandetailsController.$inject = ['loanService', 'EntityMapper', 'Loan'];
 
     var componentConfig = {
         // isolated scope binding

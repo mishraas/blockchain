@@ -9,6 +9,13 @@
 		$ctrl.openCollateralInfoSection = false;
 		$ctrl.loan = new EntityMapper(Loan).toEntity({});
 
+		this.$routerOnActivate = function() {
+			loanService.getUsesOfLoanProceeds().then(function(response) {
+				$ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
+			});
+
+		};
+
 		$ctrl.expandCollateralInfo = function() {
 			$ctrl.openCollateralInfoSection = !$ctrl.openCollateralInfoSection;
 		};
@@ -16,15 +23,6 @@
 		$ctrl.saveLoan = function() {
 			console.log($ctrl.loan);
 		};
-
-		//TODO: Add through life cycle hook
-		$ctrl.init = function() {
-			loanService.getUsesOfLoanProceeds().then(function(response) {
-				$ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
-			});
-
-		};
-		$ctrl.init();
 
 	};
 

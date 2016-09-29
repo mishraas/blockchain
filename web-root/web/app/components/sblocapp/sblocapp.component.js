@@ -2,8 +2,8 @@
 
 (function() {
 
-    var sblocappController = function($router) {
-        console.log("ROUTER SBLOC APP: ", $router);
+    var sblocappController = function() {
+        
     };
 
     sblocappController.$inject = ['$router'];

@@ -13,14 +13,12 @@
             });
         }
 
-        $ctrl.init = function() {
+        this.$onInit = function() {
             $ctrl.showLoanFormSection = false;
             //$ctrl.accountDetails = $ctrl.securityDetails;
             //$ctrl.loanAmount = '$' + loanService.loanAmount;
             calculateCollateralAmount($ctrl.securityDetails.data);
         };
-
-        $ctrl.init();
 
     }
 

@@ -9,7 +9,6 @@
     <div class="row">
         <div class="col-sm-offset-2 col-sm-8 table-responsive">
             <table class="table table-bordered table-striped ">
-                <div class="row">
                     <thead>
                         <tr>
                             <th>Loan Number</th>
@@ -21,32 +20,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>LN011</td>
-                            <td>Active</td>
-                            <td>$25000</td>
-                            <td>25000</td>
-                            <td>0</td>
-                            <td>NA</td>
-                        </tr>
-                        <tr>
-                            <td>LN012</td>
-                            <td>Pending Approval</td>
-                            <td>$35000</td>
-                            <td>25000</td>
-                            <td>0</td>
-                            <td>NA</td>
-                        </tr>
-                        <tr>
-                            <td>LN013</td>
-                            <td>Active</td>
-                            <td>$50000</td>
-                            <td>25000</td>
-                            <td>50000</td>
-                            <td>9/21/2016</td>
+                        <tr ng-repeat="loan in $ctrl.loanList">
+                            <td><a id="link-3" ng-href="/loandetails/{{loan.id}}">{{loan.id}}</a></td>
+                            <td>{{loan.status}}</td>
+                            <td>{{loan.outstanding}}</td>
+                            <td>{{loan.amountAvailableToBorrow}}</td>
+                            <td>{{loan.marginCallAmount}}</td>
+                            <td>{{loan.marginCallDueDate}}</td>
                         </tr>
                     </tbody>
-                </div>
             </table>
         </div>
     </div>

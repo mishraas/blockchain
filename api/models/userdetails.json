@@ -1,0 +1,8 @@
+{
+	"firstName"		: "Test",
+	"lastName" 		: "user",
+	"emailId"  		: "test@google.com",
+	"token"			: "24324324324",
+	"success"		: true,
+	"roles"			: [{"role":"lender", "roleId": 1}]
+}

@@ -1,0 +1,99 @@
+{
+	"loanList": [
+
+		{
+		    "id": "LN0012",
+		    "loanAmount": "7522200",
+		    "useOfLoanProceeds": "3434",
+		    "rateOfInterest ": "rateOfInterest",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Pending Approval",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "35000",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "25000",
+		    "marginCallAmount": "0",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		},
+		{
+		    "id": "MT078",
+		    "loanAmount": "7522200",
+		    "useOfLoanProceeds": "useOfLoanProceeds",
+		    "rateOfInterest ": "rateOfInterest",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Active",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "12300",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "35000",
+		    "marginCallAmount": "NA",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		},
+		{
+		    "id": "LN0012",
+		    "loanAmount": "7522200",
+		    "useOfLoanProceeds": "3434",
+		    "rateOfInterest ": "rateOfInterest",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Pending Approval",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "35000",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "25000",
+		    "marginCallAmount": "0",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		},
+		{
+		    "id": "MT078",
+		    "loanAmount": "7522200",
+		    "useOfLoanProceeds": "useOfLoanProceeds",
+		    "rateOfInterest ": "rateOfInterest",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Active",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "12300",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "35000",
+		    "marginCallAmount": "NA",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		}
+	]
+}
+
+

@@ -2,9 +2,21 @@
 
 (function() {
 
-    var loanlistingController = function() {
-        //this.message = 'Test Message';
+     var loanlistingController = function(loanService, EntityMapper, Loan, userService) {
+
+        var $ctrl = this;        
+
+        var user = userService.getLoggedInUser();
+
+        loanService.getLoanList({usedId: user.emailId, userRole: user.roles[0].role}).then(function(response){
+
+            $ctrl.loanList = new EntityMapper(Loan).toEntities(response.data.loanList);
+
+        }, function(){});
     };
+
+    loanlistingController.$inject = ['loanService', 'EntityMapper', 'Loan', 'userService'];
+
 
     var componentConfig = {
         // isolated scope binding

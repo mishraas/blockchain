@@ -12,7 +12,6 @@
             $ctrl.openCollateralInfoSection = !$ctrl.openCollateralInfoSection;
         };
 
-        //TODO: Add through life cycle hook
         $ctrl.init = function() {
             loanService.getUsesOfLoanProceeds().then(function(response) {
                 $ctrl.usesOfLoanProceeds = response.data['useOfLoanProceeds'];

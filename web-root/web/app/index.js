@@ -7,8 +7,7 @@
     window.jQuery = window.$;
     require('bootstrap-sass');
     require('ui-select');
-    //require('angular-bootstrap/ui-bootstrap');
-    require('angular-bootstrap/ui-bootstrap-tpls');
+    require('angular-ui-bootstrap');
     require('../external/angular_1_router');
 
     require('./core');

@@ -17,9 +17,7 @@
                 //TODO: call service API
                 saveLoanInfoData();
                 loanService.loanAmount = $ctrl.user.loanAmount;
-                loanService.getCollateralAccountList().then(function() {
-                    $ctrl.openCollateralAccordian();
-                });
+                $ctrl.openCollateralAccordian();
             }
         };
 

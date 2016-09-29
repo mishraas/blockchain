@@ -27,10 +27,6 @@
             path: '/login',
             name: 'Login',
             component: 'login'
-        },{
-            path: '/',
-            name: 'LoanDetails',
-            component: 'loanDetails'
         }]
     };
 

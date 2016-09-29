@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-    var appheaderController = function(userService, $router, $rootScope) {
+    var appheaderController = function(userService, $router, $rootScope, $location) {
         var $ctrl = this;
         console.log("ROUTER APPHEADER", $router);
         $ctrl.logout = function(event) {
@@ -12,6 +12,10 @@
             }, function() {
 
             });
+        };
+
+        $ctrl.isActive = function (viewLocation) { 
+            return viewLocation.toLowerCase() === $location.path().replace('/','').toLowerCase();
         };
 
         var updateHeaderMenu = function(userLoggedIn) {
@@ -46,7 +50,7 @@
 
     };
 
-    appheaderController.$inject = ['userService', '$router', '$rootScope'];
+    appheaderController.$inject = ['userService', '$router', '$rootScope', '$location'];
     var componentConfig = {
         // isolated scope binding
         bindings: {

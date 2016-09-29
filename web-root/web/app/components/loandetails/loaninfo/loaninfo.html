@@ -12,7 +12,7 @@
             <div class="col-sm-2 ">
                 <div class="form-group ">
                     <label for="middleName ">Middle Name</label>
-                    <input type="text " ng-model="$ctrl.user.middleName" class="form-control " name="middleName " \>
+                    <input type="text " ng-model="$ctrl.user.middleName" class="form-control " name="middleName " />
                 </div>
             </div>
             <div class="col-sm-2 ">
@@ -63,8 +63,8 @@
                 </div>
             </div>
             <div class="col-sm-4 col-sm-offset-1 " ng-if="$ctrl.showRateSection">
-                <label for="rateofinterest "> <strong>Rate of
-                                Interest</strong>
+                <label for="rateofinterest "> <strong>Rate of Interest</strong>
+
                 </label>
                 <p>
                     <code ng-bind="$ctrl.rateOfInterest"></code>
@@ -76,7 +76,7 @@
     <hr>
     <div class="row ">
         <div class="col-sm-offset-10 col-sm-1 ">
-            <button type="submit" class="btn btn-success pull-right ">Save</button>
+            <button type="submit" class="btn btn-success pull-right " ng-disabled="userForm.$pristine || userForm.$invalid ">Save & Continue</button>
         </div>
     </div>
 </form>

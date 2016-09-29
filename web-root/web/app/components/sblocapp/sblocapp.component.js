@@ -18,7 +18,8 @@
         $routeConfig: [{
             path: '/loandetails',
             name: 'LoanDetails',
-            component: 'loanDetails'
+            component: 'loanDetails',
+            useAsDefault:true
         }, {
             path: '/loanlisting',
             name: 'LoanListing',
@@ -27,10 +28,6 @@
             path: '/login',
             name: 'Login',
             component: 'login'
-        },{
-            path: '/',
-            name: 'LoanDetails',
-            component: 'loanDetails'
         }]
     };
 

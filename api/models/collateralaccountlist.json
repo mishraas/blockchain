@@ -1,6 +1,6 @@
 {
   
-  "collateralAccount": [
+  "collateralAccounts": [
     {
       "id": "1",
       "name" : "Collateral Account 1"

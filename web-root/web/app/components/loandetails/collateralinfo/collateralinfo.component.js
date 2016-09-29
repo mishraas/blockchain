@@ -2,39 +2,55 @@
 
 (function() {
 
-    var collateralInfoController = function(loanService) {
+	var collateralInfoController = function(loanService, EntityMapper, CollateralAccount, CollateralPosition) {
 
-        var $ctrl = this;
+		var $ctrl = this;
 
-        //TODO: Life hooks
-        $ctrl.collateralAccountList = [];
-        $ctrl.showSecuritySection = function() {
-            //TODO
-            loanService.getAccountSecurities(loanService.selectedAccountList).then(function(response) {
-                $ctrl.securityDetails = response.data['securityDetails'];
-                $ctrl.enableSecuritySection = true;
-            });
-        };
+		$ctrl.collateralAccountList = [];
+		$ctrl.showSecuritySection = function() {
+			//TODO
+			$ctrl.loan.collateralAccounts = new EntityMapper(CollateralAccount).toEntities(loanService.selectedAccountList);
+			var collateralAccountIds = [];
+			for (var index = 0, len = loanService.selectedAccountList.length; index < len; index++) {
+				collateralAccountIds.push(loanService.selectedAccountList[index].id);
+			}
 
-        $ctrl.init = function() {
-            loanService.getCollateralAccountList().then(function(response) {
-                $ctrl.collateralAccountList = response.data['collateralAccount'];
-                $ctrl.enableSecuritySection = false;
-                $ctrl.securityDetails = {};
-            });
-        };
-        $ctrl.init();
-    };
+			var params = {
+				borrowerEmailId : $ctrl.loan.borrower.emailId,
+				collateralAccountIds : collateralAccountIds
+			};
 
-    collateralInfoController.$inject = ['loanService'];
+			loanService.getAccountSecurities(params).then(function(response) {
+				$ctrl.loan.collateralPositions = new EntityMapper(CollateralPosition).toEntities(response.data['securityDetails'].data);
+				$ctrl.securityDetails = response.data['securityDetails'];
+				$ctrl.enableSecuritySection = true;
+			});
+		};
 
-    var collateralInfoConfig = {
-        bindings: {},
-        templateUrl: 'loandetails/collateralinfo/collateralinfo.html',
-        controller: collateralInfoController
-    };
+		//TODO: Life hooks
+		$ctrl.init = function() {
+			loanService.getCollateralAccountList().then(function(response) {
+				$ctrl.collateralAccountList = new EntityMapper(CollateralAccount).toEntities(response.data['collateralAccounts']);
+				$ctrl.enableSecuritySection = false;
+				$ctrl.securityDetails = {};
+			});
+		};
+		$ctrl.init();
+	};
 
-    angular.module('loandetails').component('collateralInfo', collateralInfoConfig);
+	collateralInfoController.$inject = [ 'loanService', 'EntityMapper',
+			'CollateralAccount', 'CollateralPosition' ];
 
+	var collateralInfoConfig = {
+		bindings : {
+			'loan' : '=',
+			'saveLoan' : '&'
+		},
+		templateUrl : 'loandetails/collateralinfo/collateralinfo.html',
+		controller : collateralInfoController
+	};
+
+	angular.module('loandetails').component('collateralInfo',
+			collateralInfoConfig);
 
 })();

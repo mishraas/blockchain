@@ -8,7 +8,9 @@
         $ctrl.enableRateSection = function() {
             loanService.getCurrentRate().then(function(response) {
                 $ctrl.currentRate = response.data;
-                $ctrl.showRateSection = !$ctrl.showRateSection;
+                $ctrl.showRateSection = true;
+            }, function(err){
+            	$ctrl.showRateSection = false;
             });
         };
 

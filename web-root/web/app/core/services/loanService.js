@@ -15,7 +15,8 @@
                     getUsesOfLoanProceeds: baseApiUrl + '/getUsesOfLoanProceeds',
                     getCurrentRate: baseApiUrl + '/getCurrentRate',
                     getCollateralAccountList: baseApiUrl + '/getCollateralAccountList',
-                    getAccountSecurities: baseApiUrl + '/getAccountSecurities'
+                    getAccountSecurities: baseApiUrl + '/getAccountSecurities',                    
+                    getLoanList : baseApiUrl + '/getLoanList'
                 };
 
                 function getUsesOfLoanProceeds() {
@@ -34,11 +35,16 @@
                     return $http.get(REQUEST_URL.getAccountSecurities, { params: accountList });
                 }
 
+                function getLoanList(user){
+                    return $http.get(REQUEST_URL.getLoanList,{params:user});
+                }
+
                 return {
                     getUsesOfLoanProceeds: getUsesOfLoanProceeds,
                     getCurrentRate: getCurrentRate,
                     getCollateralAccountList: getCollateralAccountList,
                     getAccountSecurities: getAccountSecurities,
+                    getLoanList: getLoanList,
                     loanAmount: 0,
                     selectedAccountList: []
                 };

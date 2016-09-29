@@ -45,9 +45,9 @@
         <div class="row ">
             <div class="col-sm-3 ">
                 <div class="form-group ">
-                    <label for="loanAmount ">Loan Amount Requested</label>
-                    <input type="number" ng-pattern="/^[0-9]*$/" class="form-control " name="loanAmount " ng-blur="$ctrl.enableRateSection()" ng-model="$ctrl.user.loanAmount" required>
-                    <label class="label label-danger" ng-if="userForm.$submitted && userForm.loanAmount.$error.required"> loan amount is required field!</label>
+                    <label for="loanAmount ">Desired Loan Amount</label>
+                    <input type="text" ng-pattern="$ctrl.loanAmountRegExp" class="form-control " name="loanAmount" ng-blur="$ctrl.enableRateSection(userForm.loanAmount.$valid)" ng-model="$ctrl.user.loanAmount" required>
+                    <label ng-if="userForm.loanAmount.$invalid && userForm.loanAmount.$dirty" class="label label-danger">Only decimal amount allowed (Ex: 12, 12.12)</label>
                 </div>
             </div>
             <div class="col-sm-3 col-sm-offset-1 ">

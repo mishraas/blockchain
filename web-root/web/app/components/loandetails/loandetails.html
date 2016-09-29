@@ -1,13 +1,24 @@
-	<accordion-group class="panel-default" is-open="$ctrl.openLoanInfoSection" is-disabled="false">
-	<accordion-heading>
-		Loan Information <i class="pull-right glyphicon"></i>
-	</accordion-heading>
-		<loan-info uses-of-loan-proceeds="$ctrl.usesOfLoanProceeds" open-collateral-accordian ="$ctrl.expandCollateralInfo()"></loan-info>
-	</accordion-group>
-	<accordion-group class="panel-default" is-open="$ctrl.openCollateralInfoSection" is-disabled="!$ctrl.openCollateralInfoSection">
-		<accordion-heading>
-			Collateral Information <i class="pull-right glyphicon"></i>
-		</accordion-heading>
-		<collateral-info ng-if="$ctrl.openCollateralInfoSection"></collateral-info>
-	</accordion-group>
-</accordion>
+<uib-accordion close-others="oneAtATime">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <uib-accordion close-others="$ctrl.closeOtherAccordian">
+                <div uib-accordion-group class="panel-primary" is-open="$ctrl.openLoanInfoSection">
+                    <uib-accordion-heading> Loan Info <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openLoanInfoSection, 'glyphicon-chevron-right': !$ctrl.openLoanInfoSection}"></i>
+                    </uib-accordion-heading>
+                    <loan-info uses-of-loan-proceeds="$ctrl.usesOfLoanProceeds" open-collateral-accordian ="$ctrl.expandCollateralInfo()"></loan-info>
+                </div>
+            </uib-accordion>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div uib-accordion-group class="panel-primary" is-open="$ctrl.openCollateralInfoSection" is-disabled="!$ctrl.openCollateralInfoSection">
+                <uib-accordion-heading >
+                    Collateral Info
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openCollateralInfoSection, 'glyphicon-chevron-right': !$ctrl.openCollateralInfoSection}"></i>
+                </uib-accordion-heading>
+                <collateral-info ng-if="$ctrl.openCollateralInfoSection"></collateral-info>
+            </div>
+        </div>
+        </div>
+</uib-accordion>

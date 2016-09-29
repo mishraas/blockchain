@@ -21,7 +21,10 @@ router.post('/authenticate', function(req, res) {
         emailId: 'sunil@gmail.com',
         firstName: 'Sunil',
         lastName: 'Kumar',
-        roles: ['admin', 'fa']
+        roles: [{
+            'roleId': '1',
+            'role': 'borrower'
+        }]
     });
 
     //if (err) throw err;
@@ -38,7 +41,7 @@ router.post('/authenticate', function(req, res) {
             // if user is found and password is right
             // create a token
             var tokenExpiry = 1440;
-            console.log(user);
+            //console.log(user);
             var token = jwt.sign(user, app.get('superSecret'), {
                 expiresIn: tokenExpiry // expires in 24 hours
             });
@@ -52,7 +55,8 @@ router.post('/authenticate', function(req, res) {
                 userName: user.userName,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                emailId: user.emailId
+                emailId: user.emailId,
+                roles: user.roles
             });
         }
     }
@@ -124,6 +128,9 @@ router.get('/getAccountSecurities', function(req, res) {
     res.send(require("./models/collateralaccountsecuritydetails"));
 });
 
+router.get('/getLoanList', function(req, res) {
+    res.send(require("./models/loanlist"));
+});
 ////************* Delete it after use
 router.get('/setup', function(req, res) {
     // create a sample user

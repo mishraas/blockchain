@@ -7,11 +7,11 @@ var config = require('./config');
 
 var app = express();
 
-mongoose.connect(config.database, function(err) {
+/*mongoose.connect(config.database, function(err) {
 	if (err) {
 		console.log(err);
 	}
-});
+});*/
 
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: false }));

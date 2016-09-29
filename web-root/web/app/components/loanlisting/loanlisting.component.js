@@ -2,7 +2,7 @@
 
 (function() {
 
-     var loanlistingController = function(loanService, EntityMapper, Loan, Person, CollateralAccount, CollateralPosition, userService) {
+     var loanlistingController = function(loanService, EntityMapper, Loan, userService) {
 
         var $ctrl = this;        
 
@@ -10,16 +10,12 @@
 
         loanService.getLoanList({usedId: user.emailId, userRole: user.roles[0].role}).then(function(response){
 
-            //-- Need to remove console, but if we remove it Lint giving error
-
-            console.log("!!!!!!!!!!!", Person, CollateralAccount, CollateralPosition);
-
             $ctrl.loanList = new EntityMapper(Loan).toEntities(response.data.loanList);
 
         }, function(){});
     };
 
-    loanlistingController.$inject = ['loanService', 'EntityMapper', 'Loan','Person', 'CollateralAccount', 'CollateralPosition', 'userService'];
+    loanlistingController.$inject = ['loanService', 'EntityMapper', 'Loan', 'userService'];
 
 
     var componentConfig = {

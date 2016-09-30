@@ -20,7 +20,7 @@ router.post('/authenticate', function(req, res) {
 
     if (err) throw err;
 	
-	  if (!user) {
+    if (!user) {
       res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
 
@@ -31,7 +31,7 @@ router.post('/authenticate', function(req, res) {
 
         // if user is found and password is right
         // create a token
-        var tokenExpiry = 1440;
+    	  var tokenExpiry = 86400; //24*60*60:in seconds
         console.log(user);
         var token = jwt.sign(user, app.get('superSecret'), {
           expiresIn: tokenExpiry // expires in 24 hours
@@ -60,13 +60,14 @@ router.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
+console.log("token:"+token);
   // decode token
   if (token) {
 
     // verifies secret and checks exp
     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
       if (err) {
+    	  console.log(err+" ************** "+decoded);
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
         // if everything is good, save to request for use in other routes
@@ -106,6 +107,7 @@ router.post('/logout', function(req, res) {
 	});
 });
 
+
 router.get('/getUsesOfLoanProceeds', function(req, res) {
     res.send(require("./models/useOfLoans"));
 });
@@ -117,7 +119,7 @@ router.get('/getCollateralAccountList', function(req, res) {
     res.send(require("./models/collateralAccountList"));
 });
 
-router.get('/getAccountSecurities', function(req, res) {
+router.post('/getAccountSecurities', function(req, res) {
     res.send(require("./models/collateralaccountsecuritydetails"));
 });
 

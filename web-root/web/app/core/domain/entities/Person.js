@@ -7,7 +7,7 @@
             var Person = function(data) {
                 if (data instanceof Object) {
                     this.firstName = data.firstName;
-                    this.middleName = data.midleName;
+                    this.middleName = data.middleName;
                     this.lastName = data.lastName;
                     this.emailId = data.emailId;
                     this.phone = data.phone;

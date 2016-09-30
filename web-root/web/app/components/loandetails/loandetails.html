@@ -5,7 +5,7 @@
                 <div uib-accordion-group class="panel-primary" is-open="$ctrl.openLoanInfoSection">
                     <uib-accordion-heading> Loan Info <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openLoanInfoSection, 'glyphicon-chevron-right': !$ctrl.openLoanInfoSection}"></i>
                     </uib-accordion-heading>
-                    <loan-info uses-of-loan-proceeds="$ctrl.usesOfLoanProceeds" open-collateral-accordian ="$ctrl.expandCollateralInfo()"></loan-info>
+                    <loan-info uses-of-loan-proceeds="$ctrl.useOfLoanProceeds" open-collateral-accordian ="$ctrl.expandCollateralInfo()" loan-info="$ctrl.loan"></loan-info>
                 </div>
             </uib-accordion>
         </div>
@@ -17,7 +17,7 @@
                     Collateral Info
                     <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openCollateralInfoSection, 'glyphicon-chevron-right': !$ctrl.openCollateralInfoSection}"></i>
                 </uib-accordion-heading>
-                <collateral-info ng-if="$ctrl.openCollateralInfoSection"></collateral-info>
+                <collateral-info ng-if="$ctrl.openCollateralInfoSection" save-loan="$ctrl.saveLoan()" loan="$ctrl.loan"></collateral-info>
             </div>
         </div>
         </div>

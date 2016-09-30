@@ -2,8 +2,8 @@
 
 (function() {
 
-    var sblocappController = function($router) {
-        console.log("ROUTER SBLOC APP: ", $router);
+    var sblocappController = function() {
+        
     };
 
     sblocappController.$inject = ['$router'];
@@ -18,7 +18,8 @@
         $routeConfig: [{
             path: '/loandetails',
             name: 'LoanDetails',
-            component: 'loanDetails'
+            component: 'loanDetails',
+            useAsDefault:true
         }, {
             path: '/loanlisting',
             name: 'LoanListing',

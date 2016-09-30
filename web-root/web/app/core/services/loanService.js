@@ -30,8 +30,8 @@
                     return $http.get(REQUEST_URL.getCollateralAccountList);
                 }
 
-                function getAccountSecurities(accountList) {
-                    return $http.get(REQUEST_URL.getAccountSecurities, { params: accountList });
+                function getAccountSecurities(params) {
+                    return $http.post(REQUEST_URL.getAccountSecurities, params);
                 }
 
                 return {

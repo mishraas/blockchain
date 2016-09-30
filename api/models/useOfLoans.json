@@ -2,19 +2,19 @@
   "useOfLoanProceeds": [
     {
       "id": "1",
-      "Reason": "Reason 1 Value"
+      "name": "Reason 1 Value"
     },
     {
       "id": "2",
-      "Reason": "Reason 2 Value"
+      "name": "Reason 2 Value"
     },
     {
       "id": "3",
-      "Reason": "Reason 3 Value"
+      "name": "Reason 3 Value"
     },
     {
       "id": "4",
-      "Reason": "Reason 4 Value"
+      "name": "Reason 4 Value"
     }
   ]
 }

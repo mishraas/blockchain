@@ -13,6 +13,9 @@
 
             });
         };
+         $ctrl.isActive = function (viewLocation) { 
+            return viewLocation.toLowerCase() === $location.path().replace('/','').toLowerCase();
+        };
 
         var updateHeaderMenu = function(userLoggedIn) {
             if (userLoggedIn) {

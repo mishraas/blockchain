@@ -9,7 +9,7 @@
         $ctrl.loan.collateralValue=0;
         function calculateCollateralAmount(securityDetails) {
             securityDetails.forEach(function(security) {
-                $ctrl.loan.collateralValue += Number.parseInt(security[security.length - 1]);
+                $ctrl.loan.collateralValue += Number.parseInt(security.collateralValue);
             });
         }
 

@@ -28,7 +28,7 @@
 
                 function saveUserToCookies(user) {
                     $cookies.putObject('loggedInUser', user, {
-                        expires: user && user.tokenExpiry && new Date(Date.now() + user.tokenExpiry * 60000)
+                        expires: user && user.tokenExpiry && new Date(Date.now() + user.tokenExpiry * 1000)
                     });
                 }
 

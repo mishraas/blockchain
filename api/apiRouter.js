@@ -131,7 +131,7 @@ router.get('/getCollateralAccountList', function(req, res) {
     res.send(require("./models/collateralAccountList"));
 });
 
-router.get('/getAccountSecurities', function(req, res) {
+router.post('/getAccountSecurities', function(req, res) {
     res.send(require("./models/collateralaccountsecuritydetails"));
 });
 

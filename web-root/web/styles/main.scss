@@ -1,10 +1,14 @@
 @import './node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import './node_modules/ui-select/dist/select';
-
 @import '_ui-overrides';
+@import 'variables';
 
 .listbox {
-	overflow-y : scroll;
-	height : 300px;
-	margin-bottom:20px;
+    overflow-y: scroll;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.collateral-heading {
+    color: $darkgrey!important;
 }

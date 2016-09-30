@@ -7,9 +7,9 @@
         var $ctrl = this;
         $ctrl.showLoanFormSection = false;
         $ctrl.loan.collateralValue=0;
-        function calculateCollateralAmount(securityDetails) {
-            securityDetails.forEach(function(security) {
-                $ctrl.loan.collateralValue += Number.parseInt(security.collateralValue);
+        function calculateCollateralAmount(collateralPositions) {
+            collateralPositions.forEach(function(position) {
+                $ctrl.loan.collateralValue += Number.parseInt(position.collateralValue);
             });
         }
 
@@ -17,7 +17,7 @@
             $ctrl.showLoanFormSection = false;
             //$ctrl.accountDetails = $ctrl.securityDetails;
             //$ctrl.loanAmount = '$' + loanService.loanAmount;
-            calculateCollateralAmount($ctrl.securityDetails.data);
+            calculateCollateralAmount($ctrl.loan.collateralPositions);
         };
 
     }

@@ -21,7 +21,7 @@ router.post('/authenticate', function(req, res) {
         emailId: 'sunil@gmail.com',
         firstName: 'Sunil',
         lastName: 'Kumar',
-        roles: [{
+         roles: [{
             'roleId': '1',
             'role': 'borrower'
         }]
@@ -41,7 +41,6 @@ router.post('/authenticate', function(req, res) {
             // if user is found and password is right
             // create a token
             var tokenExpiry = 1440;
-            //console.log(user);
             var token = jwt.sign(user, app.get('superSecret'), {
                 expiresIn: tokenExpiry // expires in 24 hours
             });
@@ -113,6 +112,14 @@ router.post('/logout', function(req, res) {
     });
 });
 
+router.post('/saveLoanData', function(req, res) {
+    res.json({
+        success: true,
+        loanId : 'LN0011',
+        message: 'form saved successfully'
+    });
+});
+
 router.get('/getUsesOfLoanProceeds', function(req, res) {
     res.send(require("./models/useOfLoans"));
 });
@@ -124,7 +131,7 @@ router.get('/getCollateralAccountList', function(req, res) {
     res.send(require("./models/collateralAccountList"));
 });
 
-router.get('/getAccountSecurities', function(req, res) {
+router.post('/getAccountSecurities', function(req, res) {
     res.send(require("./models/collateralaccountsecuritydetails"));
 });
 

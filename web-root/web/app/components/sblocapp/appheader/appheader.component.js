@@ -45,6 +45,10 @@
             updateHeaderMenu(true);
         });
 
+        $ctrl.isActive = function(viewLocation) {
+            return viewLocation.toLowerCase() === $location.path().replace('/', '').toLowerCase();
+        };
+
         updateHeaderMenu(!userService.isAnonymous());
 
     };

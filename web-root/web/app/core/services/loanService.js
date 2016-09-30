@@ -2,9 +2,9 @@
 
 (function() {
     /*
-     *	loanService
-     *	Description
-     *	loanService fetches and performs on the Loan Data.
+     *  loanService
+     *  Description
+     *  loanService fetches and performs on the Loan Data.
      */
 
     angular.module('core.services')
@@ -15,7 +15,8 @@
                     getUsesOfLoanProceeds: baseApiUrl + '/getUsesOfLoanProceeds',
                     getCurrentRate: baseApiUrl + '/getCurrentRate',
                     getCollateralAccountList: baseApiUrl + '/getCollateralAccountList',
-                    getAccountSecurities: baseApiUrl + '/getAccountSecurities'
+                    getAccountSecurities: baseApiUrl + '/getAccountSecurities',
+                    saveLoanData: baseApiUrl + '/saveLoanData'
                 };
 
                 function getUsesOfLoanProceeds() {
@@ -34,11 +35,16 @@
                     return $http.post(REQUEST_URL.getAccountSecurities, params);
                 }
 
+                function saveLoanData(loanData) {
+                    return $http.post(REQUEST_URL.saveLoanData, loanData, null);
+                }
+
                 return {
                     getUsesOfLoanProceeds: getUsesOfLoanProceeds,
                     getCurrentRate: getCurrentRate,
                     getCollateralAccountList: getCollateralAccountList,
                     getAccountSecurities: getAccountSecurities,
+                    saveLoanData: saveLoanData,
                     loanAmount: 0,
                     selectedAccountList: []
                 };

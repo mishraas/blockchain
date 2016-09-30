@@ -1,7 +1,7 @@
 @import './node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import './node_modules/ui-select/dist/select';
-
 @import '_ui-overrides';
+@import 'variables';
 
 .listbox {
 	overflow-y : scroll;
@@ -20,3 +20,9 @@
 .text-disabled {
     color: #ccc;
 }
+
+
+.collateral-heading {
+    color: $darkgrey!important;
+}
+

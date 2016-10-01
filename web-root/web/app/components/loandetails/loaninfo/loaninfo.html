@@ -43,7 +43,7 @@
     <fieldset>
         <legend>Loan Info</legend>
         <div class="row ">
-            <div class="col-sm-3 col-sm-offset-3">
+            <div class="col-sm-3 col-sm-offset-1">
                 <div class="form-group ">
                     <label for="loanAmount ">Desired Loan Amount</label>
                         <span class="input-group-addon">$</span>
@@ -63,7 +63,7 @@
                     <label class="label label-danger" ng-if="userForm.$submitted && userForm.fullName.$error.required">Loan Reason is required field!</label>
                 </div>
             </div>
-            <div class="col-sm-4 col-sm-offset-1 " ng-if="$ctrl.showRateSection">
+            <div class="col-sm-3 col-sm-offset-1 " ng-if="$ctrl.showRateSection">
                 <label for="rateofinterest "> <strong>Rate of Interest</strong>
                 </label>
                 <p>

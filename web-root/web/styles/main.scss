@@ -1,5 +1,6 @@
 @import './node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import './node_modules/ui-select/dist/select';
+@import './node_modules/font-awesome/css/font-awesome';
 @import '_ui-overrides';
 @import 'variables';
 
@@ -40,6 +41,10 @@
     font-weight: bold;
     padding-right: 20px;
     padding-top: 8px;
+}
+
+.move-right{
+	    margin-left: 50px;
 }
 
 @media screen and (max-width: 767px) {

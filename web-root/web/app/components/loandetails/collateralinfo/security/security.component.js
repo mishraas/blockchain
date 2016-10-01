@@ -6,18 +6,17 @@
 
         var $ctrl = this;
         $ctrl.showLoanFormSection = false;
-        $ctrl.loan.collateralValue=0;
-        function calculateCollateralAmount(collateralPositions) {
-            collateralPositions.forEach(function(position) {
-                $ctrl.loan.collateralValue += Number.parseInt(position.collateralValue);
-            });
-        }
+        $ctrl.positionColumns = ["LOAN ID",
+            "SECURITY NAME",
+            "CUSIP",
+            "QUANTITY",
+            "PRICE",
+            "MV",
+            "COLLATERAL VALUE"
+        ];
 
         this.$onInit = function() {
-            $ctrl.showLoanFormSection = false;
-            //$ctrl.accountDetails = $ctrl.securityDetails;
-            //$ctrl.loanAmount = '$' + loanService.loanAmount;
-            calculateCollateralAmount($ctrl.loan.collateralPositions);
+
         };
 
     }
@@ -27,7 +26,8 @@
     var config = {
         bindings: {
             securityDetails: '=',
-            loan: '='
+            loan: '=',
+            showPositionFlag : '='
         },
         templateUrl: 'loandetails/collateralinfo/security/security.html',
         controller: securityController

@@ -5,7 +5,8 @@
     var collateralInfoController = function(loanService, EntityMapper, CollateralAccount, CollateralPosition) {
 
         var $ctrl = this;
-
+        $ctrl.loan.collateralValue = 0;
+        $ctrl.showPositionFlag = false;
         $ctrl.collateralAccountList = [];
         $ctrl.showSecuritySection = function() {
             //TODO
@@ -22,10 +23,19 @@
 
             loanService.getAccountSecurities(params).then(function(response) {
                 $ctrl.loan.collateralPositions = new EntityMapper(CollateralPosition).toEntities(response.data['securityDetails'].data);
+                calculateTotalCollateralAmount($ctrl.loan.collateralPositions);
                 $ctrl.securityDetails = response.data['securityDetails'];
-                $ctrl.enableSecuritySection = true;
+                $ctrl.enableSecuritySection = $ctrl.showPositionFlag = true;
+
+
             });
         };
+
+        function calculateTotalCollateralAmount(collateralPositions) {
+            collateralPositions.forEach(function(position) {
+                $ctrl.loan.collateralValue += Number.parseInt(position.collateralValue);
+            });
+        }
 
         //TODO: Life hooks
         this.$onInit = function() {

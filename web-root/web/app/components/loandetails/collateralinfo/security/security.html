@@ -3,7 +3,24 @@
         <strong>Add Collateral Account</strong>
     </h4>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped ">
+        <table class="table table-bordered table-striped" ng-if="!$ctrl.showPositionFlag">
+            <thead>
+                <tr>
+                    <th ng-repeat="securityDetails in $ctrl.positionColumns">{{securityDetails}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7">
+                        <div class="alert-danger text-center no-position-alert">
+                            <h3>No Position Found</h3>
+                            <p>Please select collateral account and click on <b>"Generate Collateral Value"</b> button</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped " ng-if="$ctrl.showPositionFlag">
             <thead>
                 <tr>
                     <th ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
@@ -18,10 +35,9 @@
                     <td><b>$</b><span ng-bind="$ctrl.loan.collateralValue"></span></td>
                 </tr>
             </tbody>
-            </tbody>
         </table>
     </div>
-    <div class="row">
+    <div class="row" ng-if="$ctrl.showPositionFlag">
         <div class="col-sm-4">
             <div class="form-group ">
                 <label for="loanAmount ">Loan Notional Amount</label>

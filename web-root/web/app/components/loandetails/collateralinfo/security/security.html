@@ -6,7 +6,7 @@
         <table class="table table-bordered table-striped" ng-if="!$ctrl.showPositionFlag">
             <thead>
                 <tr>
-                    <th ng-repeat="securityDetails in $ctrl.positionColumns">{{securityDetails}}</th>
+                    <th class="position-header" ng-repeat="securityDetails in $ctrl.positionColumns">{{securityDetails}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,19 +20,19 @@
                 </tr>
             </tbody>
         </table>
-        <table class="table table-bordered table-striped " ng-if="$ctrl.showPositionFlag">
+        <table class="table table-hover table-striped text-center " ng-if="$ctrl.showPositionFlag">
             <thead>
                 <tr>
-                    <th ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
+                    <th class="position-header" ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat=" securityList in $ctrl.securityDetails.data">
-                    <td ng-repeat="securityData in securityList">{{securityData}}</td>
+                <tr ng-repeat=" securityList in $ctrl.securityDetails.data" class="info">
+                    <td ng-repeat="securityData in securityList"><b>{{securityData}}</b></td>
                 </tr>
                 <tr>
-                    <td colspan="6">TOTALS</td>
-                    <td><b>$</b><span ng-bind="$ctrl.loan.collateralValue"></span></td>
+                    <td colspan="6" class="info"><b>TOTALS</b></td>
+                    <td class="info"><b>$<span ng-bind="$ctrl.loan.collateralValue"></span></b></td>
                 </tr>
             </tbody>
         </table>

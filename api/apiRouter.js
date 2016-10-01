@@ -26,7 +26,7 @@ router.post('/authenticate', function(req, res) {
             'role': 'borrower'
         }]
     });
-
+     console.log(user);
     //if (err) throw err;
 
     if (!user) {
@@ -136,8 +136,13 @@ router.post('/getAccountSecurities', function(req, res) {
 });
 
 router.get('/getLoanList', function(req, res) {
-    res.send(require("./models/loanlist"));
+    res.send(require("./models/loanList"));
 });
+
+router.get('/getLoanDetails/LN0011', function(req, res) {
+    res.send(require("./models/loan/LN0011"));
+});
+
 ////************* Delete it after use
 router.get('/setup', function(req, res) {
     // create a sample user

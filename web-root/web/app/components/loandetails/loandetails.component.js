@@ -2,17 +2,22 @@
 
 (function() {
 
-    var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $anchorScroll, $location ,$router) {
+    var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $anchorScroll, $location, $router) {
         var $ctrl = this;
-        $ctrl.closeOtherAccordian = true;
-        $ctrl.openLoanInfoSection = true;
+        $ctrl.closeOtherAccordian = $ctrl.openLoanInfoSection = $ctrl.disableDraftButton = $ctrl.disableConsentButton = true;
         $ctrl.openCollateralInfoSection = false;
         $ctrl.loan = new EntityMapper(Loan).toEntity({});
         $ctrl.successFlag = $ctrl.errorFlag = false;
 
-        this.$routerOnActivate = function() {
+        this.$routerOnActivate = function(next) {
             loanService.getUsesOfLoanProceeds().then(function(response) {
                 $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
+                if (next.params.id) {
+                    var loanId = next.params.id;
+                    loanService.getLoanDetails(loanId).then(function(loanData) {
+                        $ctrl.loan = loanData.data;
+                    });
+                }
             });
 
         };
@@ -24,24 +29,24 @@
         $ctrl.saveLoan = function() {
             loanService.saveLoanData($ctrl.loan).then(function(response) {
                 if (response.data.success) {
+                    $location.hash('form-message');
                     $ctrl.successFlag = true;
                     $ctrl.loan.id = response.data.loanId;
-                    $location.hash('form-message');
                     $timeout(function() {
                         $ctrl.successFlag = false;
                     }, 5000);
                 }
             }, function(err) {
                 console.log(err);
-                $ctrl.errorFlag = true;
                 $location.hash('form-message');
+                $ctrl.errorFlag = true;
                 $timeout(function() {
                     $ctrl.errorFlag = false;
                 }, 5000);
             });
         };
 
-         $ctrl.saveAndContinue = function() {
+        $ctrl.saveAndContinue = function() {
             loanService.saveLoanData($ctrl.loan).then(function(response) {
                 if (response.data.success) {
                     $router.navigate(['LoanListing']);
@@ -52,13 +57,17 @@
                 $location.hash('form-message');
                 $timeout(function() {
                     $ctrl.errorFlag = false;
-                }, 5000);
+                }, 3000);
             });
+        };
+
+        $ctrl.enableLoanSubmissionButton = function(){
+            $ctrl.disableDraftButton = $ctrl.disableConsentButton = false;
         };
 
     };
 
-    loandetailsController.$inject = ['loanService', 'EntityMapper', 'Loan', '$timeout', '$anchorScroll', '$location','$router'];
+    loandetailsController.$inject = ['loanService', 'EntityMapper', 'Loan', '$timeout', '$anchorScroll', '$location', '$router'];
 
     var componentConfig = {
         // isolated scope binding

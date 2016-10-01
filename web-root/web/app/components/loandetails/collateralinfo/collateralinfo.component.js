@@ -26,8 +26,7 @@
                 calculateTotalCollateralAmount($ctrl.loan.collateralPositions);
                 $ctrl.securityDetails = response.data['securityDetails'];
                 $ctrl.enableSecuritySection = $ctrl.showPositionFlag = true;
-
-
+                $ctrl.enableFormSubmissionBtn();
             });
         };
 
@@ -54,7 +53,8 @@
     var collateralInfoConfig = {
         bindings: {
             'loan': '=',
-            'saveLoan': '&'
+            'saveLoan': '&',
+            'enableFormSubmissionBtn': '&'
         },
         templateUrl: 'loandetails/collateralinfo/collateralinfo.html',
         controller: collateralInfoController

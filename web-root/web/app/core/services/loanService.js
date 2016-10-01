@@ -16,7 +16,10 @@
                     getCurrentRate: baseApiUrl + '/getCurrentRate',
                     getCollateralAccountList: baseApiUrl + '/getCollateralAccountList',
                     getAccountSecurities: baseApiUrl + '/getAccountSecurities',
-                    saveLoanData: baseApiUrl + '/saveLoanData'
+                    saveLoanData: baseApiUrl + '/saveLoanData',
+                    getLoanList: baseApiUrl + '/getLoanList',
+                    getLoanDetails : baseApiUrl + '/getLoanDetails/{loanId}'
+
                 };
 
                 function getUsesOfLoanProceeds() {
@@ -39,12 +42,24 @@
                     return $http.post(REQUEST_URL.saveLoanData, loanData, null);
                 }
 
+                function getLoanList(user) {
+                    return $http.get(REQUEST_URL.getLoanList, { params: user });
+                }
+
+                function getLoanDetails(loanId) {
+                    var params={};
+                    params.loanId = loanId;
+                    return $http.get(REQUEST_URL.getLoanDetails.replace('{loanId}',loanId));
+                }
+
                 return {
                     getUsesOfLoanProceeds: getUsesOfLoanProceeds,
                     getCurrentRate: getCurrentRate,
                     getCollateralAccountList: getCollateralAccountList,
                     getAccountSecurities: getAccountSecurities,
                     saveLoanData: saveLoanData,
+                    getLoanList: getLoanList,
+                    getLoanDetails : getLoanDetails,
                     loanAmount: 0,
                     selectedAccountList: []
                 };

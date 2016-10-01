@@ -9,5 +9,5 @@ module.exports = mongoose.model('User', new Schema({
     emailId: String,
     firstName: String,
     lastName: String,
-    roles: [String]
+    roles: []
 }));

@@ -3,7 +3,7 @@
 (function() {
 
     var sblocappController = function() {
-        
+
     };
 
     sblocappController.$inject = ['$router'];
@@ -19,7 +19,11 @@
             path: '/loandetails',
             name: 'LoanDetails',
             component: 'loanDetails',
-            useAsDefault:true
+            useAsDefault: true
+        }, {
+            path: '/loandetails/:id',
+            name: 'LoanDetailsFromListing',
+            component: 'loanDetails'
         }, {
             path: '/loanlisting',
             name: 'LoanListing',

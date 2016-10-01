@@ -11,6 +11,7 @@
         'ui.bootstrap',
         'ui.select',
         'templates',
+        'focus-if',
 
         // Core Services, filters etc.
         require('./domain').name,

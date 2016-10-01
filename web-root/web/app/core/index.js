@@ -6,7 +6,7 @@
     require('angular-animate');
     require('angular-sanitize');
     require('angular-touch');
-
+    require('ng-focus-if');
     angular.module("templates", []);
     require('../templates/templates.js');
 

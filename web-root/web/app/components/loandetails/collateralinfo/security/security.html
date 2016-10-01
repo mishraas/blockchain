@@ -1,38 +1,43 @@
 <div>
-	<h4>
-		<strong>Add Collateral Account</strong>
-	</h4>
-	<div class="table-responsive">
-		<table class="table table-bordered table-striped ">
-			<thead>
-				<tr>
-					<th ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr
-					ng-repeat=" securityList in $ctrl.securityDetails.data">
-					<td ng-repeat="securityData in securityList">{{securityData}}</td>
-				</tr>
-				<tr>
-					<td colspan="6">TOTALS</td>
-					<td ><b>$</b><span ng-bind="$ctrl.loan.collateralValue"></span></td>
-				</tr>
-			</tbody>
-		</tbody>
+    <h4>
+        <strong>Add Collateral Account</strong>
+    </h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped ">
+            <thead>
+                <tr>
+                    <th ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat=" securityList in $ctrl.securityDetails.data">
+                    <td ng-repeat="securityData in securityList">{{securityData}}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">TOTALS</td>
+                    <td><b>$</b><span ng-bind="$ctrl.loan.collateralValue"></span></td>
+                </tr>
+            </tbody>
+            </tbody>
         </table>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-sm-4">
             <div class="form-group ">
                 <label for="loanAmount ">Loan Notional Amount</label>
-                <input type="text " class="form-control " id="loanAmount " ng-model="$ctrl.loan.loanAmount" readonly>
+                <div>
+                    <span class="input-group-addon">$</span>
+                    <input type="text " class="form-control " id="loanAmount " ng-model="$ctrl.loan.loanAmount" readonly>
+                </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group ">
                 <label for="collateralValue ">Collateral Value</label>
-                <input type="text " class="form-control " id="collateralValue" ng-model="$ctrl.loan.collateralValue" readonly>
+                <div>
+                    <span class="input-group-addon">$</span>
+                    <input type="text " class="form-control " id="collateralValue" ng-model="$ctrl.loan.collateralValue" readonly>
+                </div>
             </div>
         </div>
         <div class="col-sm-5">

@@ -4,13 +4,13 @@
 @import 'variables';
 
 .listbox {
-	overflow-y : scroll;
-	height : 300px;
-	margin-bottom:20px;
+    overflow-y: scroll;
+    height: 300px;
+    margin-bottom: 20px;
 }
 
 .footer-margin {
-  margin-bottom: 61px;
+    margin-bottom: 61px;
 }
 
 .footer-line-height {
@@ -21,8 +21,30 @@
     color: #ccc;
 }
 
-
 .collateral-heading {
     color: $darkgrey!important;
+}
+
+.app-footer {
+    line-height: 50px
+}
+
+.input-group-addon {
+    display: inline;
+    position: absolute;
+    top: 24px;
+    right: 0px;
+    border-radius: 4px!important;
+    border-right: 1px solid #ccc!important;
+    height: 34px;
+    font-weight: bold;
+    padding-right: 20px;
+    padding-top: 8px;
+}
+
+@media screen and (max-width: 767px) {
+    .input-group-addon {
+        right: 15px;
+    }
 }
 

@@ -12,11 +12,12 @@
         this.$routerOnActivate = function(next, prev) {
             $ctrl.previousRoute = prev.urlPath;
             loanService.getUsesOfLoanProceeds().then(function(response) {
-                $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
-                if (next.params.id) {
+                $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];        
+                if (next.params.id && $ctrl.previousRoute === 'loanlisting') {
                     var loanId = next.params.id;
                     loanService.getLoanDetails(loanId).then(function(loanData) {
                         $ctrl.loan = loanData.data;
+                        $rootScope.$broadcast('enableRateSection',{loanData:$ctrl.loan});
                         $ctrl.openCollateralInfoSection = true;
                     });
                 }

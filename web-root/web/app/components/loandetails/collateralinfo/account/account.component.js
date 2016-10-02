@@ -6,6 +6,7 @@
         var $ctrl = this;
         var selectedAccountList = [];
         $ctrl.noAccountSelectedMessage = false;
+
         $ctrl.enableSecuritySection = function() {
             selectedAccountList = getSelectedCollateralAccounts($ctrl.collateralAccountList);
             if (selectedAccountList.length) {
@@ -31,7 +32,9 @@
         bindings: {
             collateralAccountList: '=',
             selectedAccountList: '=',
-            securitySectionEnable: '&'
+            loan: '=',
+            securitySectionEnable: '&',
+            prevPath: '<'
         },
         templateUrl: 'loandetails/collateralinfo/account/account.html',
         controller: accountController

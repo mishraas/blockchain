@@ -2,7 +2,7 @@
 
 (function() {
 
-    var loanInfoController = function(loanService, EntityMapper, Person) {
+    var loanInfoController = function(loanService, EntityMapper, Person, $rootScope) {
 
         var $ctrl = this;
         $ctrl.loanAmountRegExp = /^[0-9]*\.?[0-9]+$/;
@@ -10,9 +10,9 @@
         $ctrl.enableRateSection = function(validAmtFlag) {
             if (validAmtFlag) {
                 loanService.getCurrentRate().then(function(rateInfo) {
-                    $ctrl.rateOfInterest = $ctrl.loanInfo.rateOfInterest = rateInfo.data.rateOfInterest;
-                    $ctrl.liber = $ctrl.loanInfo.liber = rateInfo.data.libor;
-                    $ctrl.spread = $ctrl.loanInfo.spread = rateInfo.data.spread;
+                    $ctrl.loanInfo.rateOfInterest = rateInfo.data.rateOfInterest;
+                    $ctrl.loanInfo.liber = rateInfo.data.libor;
+                    $ctrl.loanInfo.spread = rateInfo.data.spread;
                     $ctrl.showRateSection = true;
                 }, function() {
                     $ctrl.showRateSection = false;
@@ -21,7 +21,7 @@
 
         };
 
-        $ctrl.onLoanInfoSave = function(form , loanInfo) {
+        $ctrl.onLoanInfoSave = function(form, loanInfo) {
             if (form.$valid) {
                 var borrowerInfo = new EntityMapper(Person).toEntity(loanInfo.borrower);
                 $ctrl.loanInfo.borrower = borrowerInfo;
@@ -34,17 +34,26 @@
             }
         };
 
+        $rootScope.$on('enableRateSection', function(event, loanData) {
+            $ctrl.loanInfo.rateOfInterest = loanData.rateOfInterest;
+            $ctrl.loanInfo.liber = loanData.libor;
+            $ctrl.loanInfo.spread = loanData.spread;
+            $ctrl.showRateSection = true;
+        });
+
         $ctrl.showRateSection = false;
 
     };
 
-    loanInfoController.$inject = ['loanService', 'EntityMapper', 'Person'];
+    loanInfoController.$inject = ['loanService', 'EntityMapper', 'Person', '$rootScope'];
 
     var loanInfoConfig = {
         bindings: {
             useOfLoanProceeds: '=',
             openCollateralAccordian: '&',
-            loanInfo: '='
+            loanInfo: '=',
+            prevPath: '=',
+            showRateSection: '='
         },
         templateUrl: 'loandetails/loaninfo/loaninfo.html',
         controller: loanInfoController

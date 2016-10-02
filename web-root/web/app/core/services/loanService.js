@@ -70,6 +70,7 @@
                     getLoanDetails: getLoanDetails,
                     calculateTotalCollateralAmount: calculateTotalCollateralAmount,
                     loanAmount: 0,
+                    collateralAccountList: [],
                     selectedAccountList: []
                 };
             }

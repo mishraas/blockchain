@@ -13,7 +13,7 @@
             <div class="listbox" ng-if="!!$ctrl.collateralAccountList.length">
                 <ul class="list-group checked-list-box ">
                     <li class="list-group-item " ng-repeat="collateralAccount in $ctrl.collateralAccountList ">
-                        <input type="checkbox" ng-click="$ctrl.noAccountSelectedMessage=false" ng-model="collateralAccount.selected"> {{collateralAccount.name}}</li>
+                        <input type="checkbox" ng-click="$ctrl.noAccountSelectedMessage=false" ng-model="collateralAccount.selected" ng-value="collateralAccount.selected"> {{collateralAccount.name}}</li>
                 </ul>
             </div>
             <div class="col-sm-2 col-sm-offset-1" ng-if="!!$ctrl.collateralAccountList.length">

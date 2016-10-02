@@ -8,6 +8,7 @@
         $ctrl.loan.collateralValue = 0;
         $ctrl.showPositionFlag = false;
         $ctrl.collateralAccountList = [];
+        $ctrl.securityDetails = {};
         $ctrl.showSecuritySection = function() {
             //TODO
             $ctrl.loan.collateralAccounts = new EntityMapper(CollateralAccount).toEntities(loanService.selectedAccountList);
@@ -23,25 +24,21 @@
 
             loanService.getAccountSecurities(params).then(function(response) {
                 $ctrl.loan.collateralPositions = new EntityMapper(CollateralPosition).toEntities(response.data['securityDetails'].data);
-                calculateTotalCollateralAmount($ctrl.loan.collateralPositions);
+                $ctrl.loan.collateralValue = loanService.calculateTotalCollateralAmount($ctrl.loan.collateralPositions);
                 $ctrl.securityDetails = response.data['securityDetails'];
                 $ctrl.enableSecuritySection = $ctrl.showPositionFlag = true;
                 $ctrl.enableFormSubmissionBtn();
             });
         };
 
-        function calculateTotalCollateralAmount(collateralPositions) {
-            collateralPositions.forEach(function(position) {
-                $ctrl.loan.collateralValue += Number.parseInt(position.collateralValue);
-            });
-        }
+
 
         //TODO: Life hooks
         this.$onInit = function() {
             loanService.getCollateralAccountList().then(function(response) {
                 $ctrl.collateralAccountList = new EntityMapper(CollateralAccount).toEntities(response.data['collateralAccounts']);
                 $ctrl.enableSecuritySection = false;
-                $ctrl.securityDetails = {};
+
             });
         };
     };
@@ -52,9 +49,10 @@
 
     var collateralInfoConfig = {
         bindings: {
-            'loan': '=',
-            'saveLoan': '&',
-            'enableFormSubmissionBtn': '&'
+            loan: '=',
+            saveLoan: '&',
+            enableFormSubmissionBtn: '&',
+            prevPath: '<'
         },
         templateUrl: 'loandetails/collateralinfo/collateralinfo.html',
         controller: collateralInfoController

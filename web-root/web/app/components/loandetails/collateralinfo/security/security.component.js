@@ -2,7 +2,7 @@
 
 (function() {
 
-    function securityController() {
+    function securityController(loanService) {
 
         var $ctrl = this;
         $ctrl.showLoanFormSection = false;
@@ -15,19 +15,26 @@
             "COLLATERAL VALUE"
         ];
 
-        this.$onInit = function() {
-
+        $ctrl.$onInit = function() {
+            if ($ctrl.prevPath === 'loanlisting') {
+                $ctrl.showPositionFlag = true;
+                $ctrl.securityDetails = {};
+                $ctrl.securityDetails.columns = $ctrl.positionColumns;
+                $ctrl.securityDetails.data = $ctrl.loan.collateralPositions;
+                $ctrl.loan.collateralValue = loanService.calculateTotalCollateralAmount($ctrl.securityDetails.data);
+            }
         };
 
     }
 
-    securityController.$inject = [];
+    securityController.$inject = ['loanService'];
 
     var config = {
         bindings: {
-            securityDetails: '=',
+            securityDetails: '<',
             loan: '=',
-            showPositionFlag : '='
+            showPositionFlag: '=',
+            prevPath: '<'
         },
         templateUrl: 'loandetails/collateralinfo/security/security.html',
         controller: securityController

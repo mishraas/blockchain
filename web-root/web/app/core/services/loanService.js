@@ -18,7 +18,7 @@
                     getAccountSecurities: baseApiUrl + '/getAccountSecurities',
                     saveLoanData: baseApiUrl + '/saveLoanData',
                     getLoanList: baseApiUrl + '/getLoanList',
-                    getLoanDetails : baseApiUrl + '/getLoanDetails/{loanId}'
+                    getLoanDetails: baseApiUrl + '/getLoanDetails/{loanId}'
 
                 };
 
@@ -47,9 +47,17 @@
                 }
 
                 function getLoanDetails(loanId) {
-                    var params={};
+                    var params = {};
                     params.loanId = loanId;
-                    return $http.get(REQUEST_URL.getLoanDetails.replace('{loanId}',loanId));
+                    return $http.get(REQUEST_URL.getLoanDetails.replace('{loanId}', loanId));
+                }
+
+                function calculateTotalCollateralAmount(collateralPositions) {
+                    var totalCollateralAmount = 0;
+                    collateralPositions.forEach(function(position) {
+                        totalCollateralAmount += Number.parseInt(position.collateralValue);
+                    });
+                    return totalCollateralAmount;
                 }
 
                 return {
@@ -59,7 +67,8 @@
                     getAccountSecurities: getAccountSecurities,
                     saveLoanData: saveLoanData,
                     getLoanList: getLoanList,
-                    getLoanDetails : getLoanDetails,
+                    getLoanDetails: getLoanDetails,
+                    calculateTotalCollateralAmount: calculateTotalCollateralAmount,
                     loanAmount: 0,
                     selectedAccountList: []
                 };

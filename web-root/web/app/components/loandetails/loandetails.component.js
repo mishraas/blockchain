@@ -9,7 +9,8 @@
         $ctrl.loan = new EntityMapper(Loan).toEntity({});
         $ctrl.successFlag = $ctrl.errorFlag = false;
 
-        this.$routerOnActivate = function(next) {
+        this.$routerOnActivate = function(next, prev) {
+            $ctrl.previousRoute = prev.urlPath;
             loanService.getUsesOfLoanProceeds().then(function(response) {
                 $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
                 if (next.params.id) {

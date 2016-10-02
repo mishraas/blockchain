@@ -2,16 +2,16 @@
 
 (function() {
 
-    var loginController = function(LoginInfo, userService, $router) {
+    var loginController = function(LoginInfo, userService, $router,$rootScope) {
         console.log("ROUTER LOGIN: ", $router);
         var $ctrl = this;
         this.loginInfo = new LoginInfo();
         this.isLoginSuccess = false;
         this.loginMessage = '';
+        
 
-        this.$routerOnActivate = function(next) {
-            console.log('Login: $routerOnActivate', this, next);
-        };
+        this.$routerOnActivate = function() {
+        };  
 
         this.loginSubmit = function() {
             userService.login($ctrl.loginInfo).then(function(response) {
@@ -23,8 +23,10 @@
                 $ctrl.isLoginSuccess = false;
             });
         };
+
+        $rootScope.$broadcast('navButton',{status:false});
     };
-    loginController.$inject = ['LoginInfo', 'userService', '$router'];
+    loginController.$inject = ['LoginInfo', 'userService', '$router','$rootScope'];
 
     var componentConfig = {
         // isolated scope binding

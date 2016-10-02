@@ -1,4 +1,4 @@
-<form ng-submit="$ctrl.onLoanInfoSave(userForm)" novalidate name="userForm" role="form">
+<form ng-submit="$ctrl.onLoanInfoSave(userForm,$ctrl.loanInfo)" novalidate name="userForm" role="form">
     <fieldset>
         <legend>Borrower Info</legend>
         <div class="row">
@@ -54,9 +54,9 @@
             <div class="col-sm-3 col-sm-offset-1">
                 <div class="form-group">
                     <label for="loanUse ">Use of Loan Proceeds</label>
-                    <ui-select ng-model="$ctrl.loanInfo.usesOfLoanProceeds" theme="bootstrap" required>
+                    <ui-select ng-model="$ctrl.loanInfo.useOfLoanProceeds" theme="bootstrap" required>
                         <ui-select-match placeholder="Select a Reason">{{$select.selected.name}}</ui-select-match>
-                        <ui-select-choices repeat="useofLoan in $ctrl.usesOfLoanProceeds">
+                        <ui-select-choices repeat="useofLoan in $ctrl.useOfLoanProceeds">
                             <div ng-bind="useofLoan.name"></div>
                         </ui-select-choices>
                     </ui-select>

@@ -2,7 +2,7 @@
 
 (function() {
 
-    var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $anchorScroll, $location, $router) {
+    var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $rootScope, $anchorScroll, $location, $router) {
         var $ctrl = this;
         $ctrl.closeOtherAccordian = $ctrl.openLoanInfoSection = $ctrl.disableDraftButton = $ctrl.disableConsentButton = true;
         $ctrl.openCollateralInfoSection = false;
@@ -16,6 +16,7 @@
                     var loanId = next.params.id;
                     loanService.getLoanDetails(loanId).then(function(loanData) {
                         $ctrl.loan = loanData.data;
+                        $ctrl.openCollateralInfoSection = true;
                     });
                 }
             });
@@ -61,13 +62,15 @@
             });
         };
 
-        $ctrl.enableLoanSubmissionButton = function(){
+        $ctrl.enableLoanSubmissionButton = function() {
             $ctrl.disableDraftButton = $ctrl.disableConsentButton = false;
         };
 
+        $rootScope.$broadcast('navButton',{status:true});
+
     };
 
-    loandetailsController.$inject = ['loanService', 'EntityMapper', 'Loan', '$timeout', '$anchorScroll', '$location', '$router'];
+    loandetailsController.$inject = ['loanService', 'EntityMapper', 'Loan', '$timeout', '$rootScope', '$anchorScroll', '$location', '$router'];
 
     var componentConfig = {
         // isolated scope binding

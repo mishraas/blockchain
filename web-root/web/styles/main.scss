@@ -7,6 +7,14 @@
                 overflow-y: scroll;
                 height: 300px;
                 margin-bottom: 20px;
+                margin-left : 30px;
+            }
+
+            .listbox{
+                li{
+                 background : lightgray;
+                 color : white;
+                }
             }
             
             .footer-margin {
@@ -51,7 +59,7 @@
             }
             
             .no-position-alert {
-                padding: 30px;
+                padding: 15px 0px;
             }
             
             a:hover {
@@ -71,6 +79,10 @@
             .fade-form-submission-msg {
                 -webkit-animation: fademessage 5s;
                 animation: fademessage 5s;
+            }
+
+            .header-button-visible{
+              visibility: hidden;
             }
             
             @keyframes fademessage {

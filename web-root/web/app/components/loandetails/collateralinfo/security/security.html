@@ -13,7 +13,7 @@
                 <tr>
                     <td colspan="7">
                         <div class="alert-danger text-center no-position-alert">
-                            <h3>No Position Found</h3>
+                            <h3><b>*** No Position Found ***</b></h3>
                             <p>Please select collateral account and click on <b>"Generate Collateral Value"</b> button</p>
                         </div>
                     </td>
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat=" securityList in $ctrl.securityDetails.data" class="info">
-                    <td ng-repeat="securityData in securityList"><b>{{securityData}}</b></td>
+                    <td ng-repeat="securityData in securityList">{{securityData}}</td>
                 </tr>
                 <tr>
                     <td colspan="6" class="info"><b>TOTALS</b></td>

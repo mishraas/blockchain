@@ -21,13 +21,13 @@
 
         };
 
-        $ctrl.onLoanInfoSave = function(form) {
+        $ctrl.onLoanInfoSave = function(form , loanInfo) {
             if (form.$valid) {
-                var borrowerInfo = new EntityMapper(Person).toEntity($ctrl.loanInfo.borrower);
+                var borrowerInfo = new EntityMapper(Person).toEntity(loanInfo.borrower);
                 $ctrl.loanInfo.borrower = borrowerInfo;
-                $ctrl.loanInfo.useOfLoanProceeds = $ctrl.loanInfo.usesOfLoanProceeds.id;
-                $ctrl.loanInfo.loanAmount = $ctrl.loanInfo.loanAmount;
-                loanService.loanAmount = $ctrl.loanInfo.loanAmount;
+                $ctrl.loanInfo.useOfLoanProceeds = loanInfo.useOfLoanProceeds;
+                $ctrl.loanInfo.loanAmount = loanInfo.loanAmount;
+                loanService.loanAmount = loanInfo.loanAmount;
                 loanService.getCollateralAccountList().then(function() {
                     $ctrl.openCollateralAccordian();
                 });
@@ -42,7 +42,7 @@
 
     var loanInfoConfig = {
         bindings: {
-            usesOfLoanProceeds: '=',
+            useOfLoanProceeds: '=',
             openCollateralAccordian: '&',
             loanInfo: '='
         },

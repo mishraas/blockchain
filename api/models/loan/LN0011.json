@@ -1,7 +1,7 @@
 {
   "id": "LN0011",
   "loanAmount": "10000",
-  "useOfLoanProceeds": "3",
+  "useOfLoanProceeds": {"id":"3","name":"Reason 3 Value"},
   "rateOfInterest": "4.25%",
   "spread": "Spread",
   "collateralValue": 24523,

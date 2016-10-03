@@ -15,7 +15,8 @@
         };
 
         $ctrl.isActive = function(viewLocation) {
-            return viewLocation.toLowerCase() === $location.path().replace('/', '').toLowerCase();
+            console.log((viewLocation.toLowerCase() === $location.path().split('/')[1].toLowerCase()), $location.path().split('/')[1].toLowerCase(),viewLocation.toLowerCase() );
+            return viewLocation.toLowerCase() === $location.path().split('/')[1].toLowerCase();
         };
 
         var updateHeaderMenu = function(userLoggedIn) {

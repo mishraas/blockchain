@@ -29,9 +29,9 @@
         },
         templateUrl: 'loanlisting/loanlisting.html',
         controller: loanlistingController,
-        $canActivate: ['$nextInstruction', '$prevInstruction', 'userService', function($nextInstruction, $prevInstruction, userService) {
+        $canActivate: ['$nextInstruction', '$prevInstruction', 'userService', function($nextInstruction, $prevInstruction, userService, $router) {
             if (userService.isAnonymous() === true) {
-                window.location.pathname = '/login';
+                  $router.navigate(['Login']);
                 return false;
             } else {
                 return true;

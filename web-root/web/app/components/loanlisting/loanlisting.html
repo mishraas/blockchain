@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="loan in $ctrl.loanList" class="info">
+                    <tr ng-repeat="loan in $ctrl.loanList" >
                         <td><a id="link-3" ng-click="$ctrl.navigateToLoanDetails(loan.id)">{{loan.id}}</a></td>
                         <td>{{loan.status}}</td>
                         <td>{{loan.outstanding}}</td>

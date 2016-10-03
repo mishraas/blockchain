@@ -9,5 +9,6 @@
     require('./CollateralAccount');
     require('./CollateralPosition');
     require('./Loan');
+    require('./LoanStatus');
 
 })();

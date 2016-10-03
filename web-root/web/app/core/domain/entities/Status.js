@@ -13,7 +13,7 @@
                 }
             };
 
-            UserRole.prototype = {
+            Status.prototype = {
 
             };
             return Status;

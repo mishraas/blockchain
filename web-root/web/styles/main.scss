@@ -7,13 +7,13 @@
                 overflow-y: scroll;
                 height: 300px;
                 margin-bottom: 20px;
-                margin-left : 30px;
+                margin-left: 30px;
             }
-
-            .listbox{
-                li{
-                 background : lightgray;
-                 color : white;
+            
+            .listbox {
+                li {
+                    background: lightgray;
+                    color: white;
                 }
             }
             
@@ -75,14 +75,43 @@
                 border: 2px solid silver;
                 background: grey;
             }
-
+            
             .fade-form-submission-msg {
                 -webkit-animation: fademessage 5s;
                 animation: fademessage 5s;
             }
-
-            .header-button-visible{
-              visibility: hidden;
+            
+            .header-button-visible {
+                visibility: hidden;
+            }
+            
+            .navbar-brand {
+                background: #777;
+                color: white!important;
+                height: 54px;
+            }
+            
+            div.navbar-collapse.collapse {
+                ul.nav.navbar-nav {
+                    margin-left: 20px;
+                    li.active {
+                        border: 2px solid #777;
+                    }
+                }
+            }
+            
+            div.navbar-collapse.collapse {
+                ul.nav.navbar-nav.navbar-right {
+                    li {
+                        border-left: 2px solid #777;
+                        border-right: 2px solid #777;
+                        background: #e7e7e7;
+                        height: 54px;
+                    }
+                    li:last-child {
+                        border-left: none
+                    }
+                }
             }
             
             @keyframes fademessage {
@@ -106,5 +135,23 @@
             @media screen and (max-width: 767px) {
                 .input-group-addon {
                     right: 15px;
+                }
+                div.navbar-collapse.collapse {
+                    ul.nav.navbar-nav {
+                        margin-left: 0px;
+                        li.active {
+                            border: none;
+                        }
+                    }
+                }
+                div.navbar-collapse.collapse {
+                    ul.nav.navbar-nav.navbar-right {
+                        li {
+                            border-left: none;
+                            border-right: none;
+                            background: #e7e7e7;
+                            height: 54px;
+                        }
+                    }
                 }
             }

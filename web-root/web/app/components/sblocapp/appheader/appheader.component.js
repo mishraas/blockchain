@@ -13,8 +13,9 @@
 
             });
         };
-         $ctrl.isActive = function (viewLocation) { 
-            return viewLocation.toLowerCase() === $location.path().replace('/','').toLowerCase();
+
+        $ctrl.isActive = function(viewLocation) {
+            return viewLocation.toLowerCase() === $location.path().replace('/', '').toLowerCase();
         };
 
         var updateHeaderMenu = function(userLoggedIn) {
@@ -45,9 +46,9 @@
             updateHeaderMenu(true);
         });
 
-        $ctrl.isActive = function(viewLocation) {
-            return viewLocation.toLowerCase() === $location.path().replace('/', '').toLowerCase();
-        };
+         $rootScope.$on('navButton', function(event,data) {
+            $ctrl.hideNavButtonFlag = data.status;
+        });
 
         updateHeaderMenu(!userService.isAnonymous());
 

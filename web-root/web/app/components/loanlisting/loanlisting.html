@@ -7,46 +7,28 @@
 </nav>
 <div class="container">
     <div class="row">
-        <div class="col-sm-offset-1 col-sm-10 table-responsive">
-            <table class="table table-bordered table-hover table-striped">
-                <div class="row">
-                    <thead>
-                        <tr>
-                            <th>Loan Number</th>
-                            <th>Loan Status</th>
-                            <th>Outstanding</th>
-                            <th>Amt. Avl To Borrow</th>
-                            <th>Margin Call Amt.</th>
-                            <th>Margin Call Due Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>LN011</td>
-                            <td>Active</td>
-                            <td>$25000</td>
-                            <td>25000</td>
-                            <td>0</td>
-                            <td>NA</td>
-                        </tr>
-                        <tr>
-                            <td>LN012</td>
-                            <td>Pending Approval</td>
-                            <td>$35000</td>
-                            <td>25000</td>
-                            <td>0</td>
-                            <td>NA</td>
-                        </tr>
-                        <tr>
-                            <td>LN013</td>
-                            <td>Active</td>
-                            <td>$50000</td>
-                            <td>25000</td>
-                            <td>50000</td>
-                            <td>9/21/2016</td>
-                        </tr>
-                    </tbody>
-                </div>
+         <div class="col-sm-offset-1 col-sm-10 table-responsive">
+            <table class="table table-hover table-striped text-center">
+                <thead>
+                    <tr class="position-header">
+                        <th>Loan Number</th>
+                        <th>Loan Status</th>
+                        <th>Outstanding</th>
+                        <th>Amt. Avl To Borrow</th>
+                        <th>Margin Call Amt.</th>
+                        <th>Margin Call Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="loan in $ctrl.loanList" class="info">
+                        <td><a id="link-3" ng-click="$ctrl.navigateToLoanDetails(loan.id)">{{loan.id}}</a></td>
+                        <td>{{loan.status}}</td>
+                        <td>{{loan.outstanding}}</td>
+                        <td>{{loan.amountAvailableToBorrow}}</td>
+                        <td>{{loan.marginCallAmount}}</td>
+                        <td>{{loan.marginCallDueDate}}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

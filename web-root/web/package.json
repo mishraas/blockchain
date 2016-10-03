@@ -16,7 +16,9 @@
     "angular-touch": "^1.5.8",
     "angular-ui-bootstrap": "^2.1.4",
     "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
+    "ng-focus-if": "^1.0.7",
     "ui-select": "^0.19.4"
   }
 }

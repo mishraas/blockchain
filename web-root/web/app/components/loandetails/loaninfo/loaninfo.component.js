@@ -2,70 +2,63 @@
 
 (function() {
 
-        var loanInfoController = function(loanService, EntityMapper, Person) {
+    var loanInfoController = function(loanService, EntityMapper, Person, $rootScope) {
 
-            var $ctrl = this;
-            $ctrl.loanAmountRegExp = /^[0-9]*\.?[0-9]+$/;
+        var $ctrl = this;
+        $ctrl.loanAmountRegExp = /^[0-9]*\.?[0-9]+$/;
 
-            $ctrl.enableRateSection = function(validAmtFlag){
-                    if (validAmtFlag) {
-                        loanService.getCurrentRate().then(function(rateInfo) {
-                            $ctrl.rateOfInterest = $ctrl.loanInfo.rateOfInterest = rateInfo.data.rateOfInterest;
-                            $ctrl.liber = $ctrl.loanInfo.liber = rateInfo.data.libor;
-                            $ctrl.spread = $ctrl.loanInfo.spread = rateInfo.data.spread;
-                            $ctrl.showRateSection = true;
-                        }, function() {
-                            $ctrl.showRateSection = false;
-                        });
-                    }
+        $ctrl.enableRateSection = function(validAmtFlag) {
+            if (validAmtFlag) {
+                loanService.getCurrentRate().then(function(rateInfo) {
+                    $ctrl.loanInfo.rateOfInterest = rateInfo.data.rateOfInterest;
+                    $ctrl.loanInfo.liber = rateInfo.data.libor;
+                    $ctrl.loanInfo.spread = rateInfo.data.spread;
+                    $ctrl.showRateSection = true;
+                }, function() {
+                    $ctrl.showRateSection = false;
+                });
+            }
 
-                };
+        };
 
-                $ctrl.onLoanInfoSave = function(form) {
-                    if (form.$valid) {
+        $ctrl.onLoanInfoSave = function(form, loanInfo) {
+            if (form.$valid) {
+                var borrowerInfo = new EntityMapper(Person).toEntity(loanInfo.borrower);
+                $ctrl.loanInfo.borrower = borrowerInfo;
+                $ctrl.loanInfo.useOfLoanProceeds = loanInfo.useOfLoanProceeds;
+                $ctrl.loanInfo.loanAmount = loanInfo.loanAmount;
+                loanService.loanAmount = loanInfo.loanAmount;
+                loanService.getCollateralAccountList().then(function() {
+                    $ctrl.openCollateralAccordian();
+                });
+            }
+        };
 
-                        saveLoanInfoData();
-                        var borrowerInfo = new EntityMapper(Person).toEntity($ctrl.user);
-                        $ctrl.loanInfo.borrower = borrowerInfo;
-                        $ctrl.loanInfo.useOfLoanProceeds = $ctrl.user.usesOfLoanProceeds.id;
-                        $ctrl.loanInfo.loanAmount = $ctrl.user.loanAmount;
-                        loanService.loanAmount = $ctrl.user.loanAmount;
-                        loanService.getCollateralAccountList().then(function() {
-                            $ctrl.openCollateralAccordian();
-                        });
-                    }
-                };
+        $rootScope.$on('enableRateSection', function(event, loanData) {
+            $ctrl.loanInfo.rateOfInterest = loanData.rateOfInterest;
+            $ctrl.loanInfo.liber = loanData.libor;
+            $ctrl.loanInfo.spread = loanData.spread;
+            $ctrl.showRateSection = true;
+        });
 
-                function saveLoanInfoData() {
+        $ctrl.showRateSection = false;
 
-                    /*var loanInfoData = {
-                        firstName: $ctrl.user.firstName,
-                        middeleInitial: $ctrl.user.middleName,
-                        lastName: $ctrl.user.lastName,
-                        emailId: $ctrl.user.email,
-                        mobileNumber: $ctrl.user.mobilenumber,
-                        loanAmount: $ctrl.user.loanAmount,
-                        useofLoan: $ctrl.user.selectedReason.Reason
-                    };*/
-                    //TODO -- code for posting this data to backend
-                }
+    };
 
-                $ctrl.showRateSection = false;
+    loanInfoController.$inject = ['loanService', 'EntityMapper', 'Person', '$rootScope'];
 
-            };
+    var loanInfoConfig = {
+        bindings: {
+            useOfLoanProceeds: '=',
+            openCollateralAccordian: '&',
+            loanInfo: '=',
+            prevPath: '=',
+            showRateSection: '='
+        },
+        templateUrl: 'loandetails/loaninfo/loaninfo.html',
+        controller: loanInfoController
+    };
 
-            loanInfoController.$inject = ['loanService', 'EntityMapper', 'Person'];
+    angular.module('loandetails').component('loanInfo', loanInfoConfig);
 
-            var loanInfoConfig = {
-                bindings: {
-                    usesOfLoanProceeds: '=',
-                    openCollateralAccordian: '&',
-                    loanInfo: '='
-                },
-                templateUrl: 'loandetails/loaninfo/loaninfo.html',
-                controller: loanInfoController
-            };
-
-            angular.module('loandetails').component('loanInfo', loanInfoConfig);
-
-        })();
+})();

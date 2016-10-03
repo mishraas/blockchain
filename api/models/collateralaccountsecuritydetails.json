@@ -1,13 +1,13 @@
 {
   "securityDetails": {
     "columns": [
-      "ID",
-      "SecurityName",
-      "cusip",
-      "qty",
-      "price",
-      "mv",
-      "collateralValue"
+      "LOAN ID",
+            "SECURITY NAME",
+            "CUSIP",
+            "QUANTITY",
+            "PRICE",
+            "MV",
+            "COLLATERAL VALUE"
     ],
     "data": [{
 			"id" : 11,  

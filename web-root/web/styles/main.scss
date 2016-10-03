@@ -1,32 +1,122 @@
+
 @import './node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import './node_modules/ui-select/dist/select';
+@import './node_modules/font-awesome/css/font-awesome';
 @import '_ui-overrides';
 @import 'variables';
+.listbox {
+    overflow-y: scroll;
+    height: 300px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
 
 .listbox {
-	overflow-y : scroll;
-	height : 300px;
-	margin-bottom:20px;
+    li {
+        background: #c4e3f3;
+        color: black;
+    }
 }
 
 .footer-margin {
-  margin-bottom: 61px;
-}
-
-.footer-line-height {
-    line-height: 49px;
+    margin-bottom: 61px;
 }
 
 .text-disabled {
     color: #ccc;
 }
 
-
 .collateral-heading {
     color: $darkgrey!important;
 }
+
 
 .header-color{
 	background-color:#337ab7 !important;
 	color: #ffffff !important;
 }
+
+.app-footer {
+    line-height: 50px
+}
+
+.input-group-addon {
+    display: inline;
+    position: absolute;
+    top: 24px;
+    right: 0px;
+    border-radius: 4px!important;
+    border-right: 1px solid #ccc!important;
+    height: 34px;
+    font-weight: bold;
+    padding-right: 20px;
+    padding-top: 8px;
+}
+
+.move-right {
+    margin-left: 50px;
+}
+
+.add-account {
+    float: left
+}
+
+.no-position-alert {
+    padding: 15px 0px;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.position-header {
+  border: 2px solid #ccc;
+    background: #e7e7e7;
+}
+
+.fade-form-submission-msg {
+    -webkit-animation: fademessage 5s;
+    animation: fademessage 5s;
+}
+
+.header-button-visible {
+    visibility: hidden;
+}
+
+.navbar-brand {
+    background: #337ab7;
+    color: white!important;
+    height: 50px;
+    font-family: 'Ropa Sans';
+}
+
+.navbar-brand:hover{
+    color: #ccc !important;
+     background: #337ab7 !important;
+}
+
+@keyframes fademessage {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes fademessage {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .input-group-addon {
+        right: 15px;
+    }
+
+}
+

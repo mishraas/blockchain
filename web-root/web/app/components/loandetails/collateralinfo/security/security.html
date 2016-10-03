@@ -1,44 +1,68 @@
-<div>
-	<h4>
-		<strong>Add Collateral Account</strong>
-	</h4>
-	<div class="table-responsive">
-		<table class="table table-bordered table-striped ">
-			<thead>
-				<tr>
-					<th ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr
-					ng-repeat=" securityList in $ctrl.securityDetails.data">
-					<td ng-repeat="securityData in securityList">{{securityData}}</td>
-				</tr>
-				<tr>
-					<td colspan="6">TOTALS</td>
-					<td ><b>$</b><span ng-bind="$ctrl.loan.collateralValue"></span></td>
-				</tr>
-			</tbody>
-		</tbody>
+<div class="move-right">
+    <h4>
+        <strong>Add Collateral Account</strong>
+    </h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" ng-if="!$ctrl.showPositionFlag">
+            <thead>
+                <tr>
+                    <th class="position-header" ng-repeat="securityDetails in $ctrl.positionColumns">{{securityDetails}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7">
+                        <div class="alert-danger text-center no-position-alert">
+                            <h3><b>*** No Position Found ***</b></h3>
+                            <p>Please select collateral account and click on <b>"Generate Collateral Value"</b> button</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-hover table-striped text-center " ng-if="$ctrl.showPositionFlag">
+            <thead>
+                <tr>
+                    <th class="position-header" ng-repeat="securityDetails in $ctrl.securityDetails.columns">{{securityDetails}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat=" securityList in $ctrl.securityDetails.data" class="info">
+                    <td ng-repeat="securityData in securityList">{{securityData}}</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="info"><b>TOTALS</b></td>
+                    <td class="info"><b>$<span ng-bind="$ctrl.loan.collateralValue"></span></b></td>
+                </tr>
+            </tbody>
         </table>
     </div>
-    <div class="row" >
+    <div class="row" ng-if="$ctrl.showPositionFlag">
         <div class="col-sm-4">
             <div class="form-group ">
                 <label for="loanAmount ">Loan Notional Amount</label>
-                <input type="text " class="form-control " id="loanAmount " ng-model="$ctrl.loan.loanAmount" readonly>
+                <div>
+                    <span class="input-group-addon">$</span>
+                    <input type="text " class="form-control " id="loanAmount " ng-model="$ctrl.loan.loanAmount" readonly>
+                </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group ">
                 <label for="collateralValue ">Collateral Value</label>
-                <input type="text " class="form-control " id="collateralValue" ng-model="$ctrl.loan.collateralValue" readonly>
+                <div>
+                    <span class="input-group-addon">$</span>
+                    <input type="text " class="form-control " id="collateralValue" ng-model="$ctrl.loan.collateralValue" readonly>
+                </div>
             </div>
         </div>
         <div class="col-sm-5">
             <div class="form-group ">
                 <label for="loanAmount ">Collateral Sufficient to Approve (Y/N)</label>
-                <button class="btn btn-success btn-block">YES</button>
+                <div class="row text-center">
+                    <button class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                </div>
             </div>
         </div>
     </div>

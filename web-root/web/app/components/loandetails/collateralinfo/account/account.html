@@ -1,20 +1,24 @@
-<div class="form-group">
-    <h4>
-		<strong>Add Collateral Account</strong>
-	</h4>
-	<p class="text-danger" ng-if="$ctrl.noAccountSelectedMessage"><b>Select atleast 1 account to Proceed</b></p>
-    <div class="row" ng-if="!$ctrl.collateralAccountList.length">
-        <div class="col-sm-11 col-sm-offset-1">
-            <p class="pull-left text-danger"><b>No Collateral Account Found !!!</b></p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="add-account">
+            <h4 class="text-center">
+            <strong>Add Collateral Account</strong>
+            </h4>
+            <p class="text-danger" ng-if="$ctrl.noAccountSelectedMessage"><b>Select atleast 1 account to Proceed</b></p>
+            <div class="row" ng-if="!$ctrl.collateralAccountList.length">
+                <div class="col-sm-11 col-sm-offset-1">
+                    <p class="pull-left text-danger"><b>No Collateral Account Found !!!</b></p>
+                </div>
+            </div>
+            <div class="listbox" ng-if="!!$ctrl.collateralAccountList.length">
+                <ul class="list-group checked-list-box ">
+                    <li class="list-group-item " ng-repeat="collateralAccount in $ctrl.collateralAccountList ">
+                        <input type="checkbox" ng-click="$ctrl.noAccountSelectedMessage=false" ng-model="collateralAccount.selected" ng-value="collateralAccount.selected"> {{collateralAccount.name}}</li>
+                </ul>
+            </div>
+            <div class="col-sm-2 col-sm-offset-1" ng-if="!!$ctrl.collateralAccountList.length">
+                <button class="btn btn-primary " ng-click="$ctrl.enableSecuritySection()">Generate Collateral Value</button>
+            </div>
         </div>
-    </div>
-    <div class="listbox" ng-if="!!$ctrl.collateralAccountList.length">
-        <ul class="list-group checked-list-box well">
-            <li class="list-group-item " ng-repeat="collateralAccount in $ctrl.collateralAccountList ">
-                <input type="checkbox" ng-click="$ctrl.noAccountSelectedMessage=false" ng-model="collateralAccount.selected"> {{collateralAccount.name}}</li>
-        </ul>
-    </div>
-    <div class="col-sm-2 col-sm-offset-1" ng-if="!!$ctrl.collateralAccountList.length">
-        <button class="btn btn-primary " ng-click="$ctrl.enableSecuritySection()">Generate Collateral Value</button>
     </div>
 </div>

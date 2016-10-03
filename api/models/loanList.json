@@ -1,0 +1,97 @@
+{
+	"loanList": [
+
+		{
+		    "id": "LN0011",
+		    "loanAmount": "10000",
+		    "useOfLoanProceeds": "3",
+		    "rateOfInterest ": "6.66%",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Pending Approval",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "35000",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "25000",
+		    "marginCallAmount": "0",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		},
+		{
+		    "id": "LN0012",
+		    "loanAmount": "20000",
+		    "useOfLoanProceeds": "3",
+		    "rateOfInterest ": "8.50%",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Active",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "12300",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "35000",
+		    "marginCallAmount": "NA",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		},
+		{
+		    "id": "LN0013",
+		    "loanAmount": "12000",
+		    "useOfLoanProceeds": "2",
+		    "rateOfInterest ": "9.50%",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Pending Approval",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "35000",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "25000",
+		    "marginCallAmount": "0",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		},
+		{
+		    "id": "LN0014",
+		    "loanAmount": "7522200",
+		    "useOfLoanProceeds": "2",
+		    "rateOfInterest ": "11.88%",
+		    "libor": "libor",
+		    "spread": "spread",
+		    "status": "Active",
+		    "creditLimit": "creditLimit",
+		    "outstanding": "12300",
+		    "creditLineExcess": "creditLineExcess",
+		    "amountAvailableToBorrow": "35000",
+		    "marginCallAmount": "NA",
+		    "marginCallDueDate": "NA",
+		    "marketValue": "marketValue",
+		    "lendableValue": "lendableValue",
+		    "collateralValue": "collateralValue",
+		    "excess": "excess",
+		    "deficit": "deficit",
+		    "lenderName": "lenderName",
+		    "lenderAddress": "street abc xyz"
+
+		}
+	]
+}

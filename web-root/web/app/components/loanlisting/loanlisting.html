@@ -1,35 +1,112 @@
-<nav class="navbar navbar-default col-sm-offset-2 col-sm-8 header-color">
-    <div class="container-fluid">
-        <div class="text-center">
-            <h3><b>Loan Listing</b></h3>
-        </div>
-    </div>
-</nav>
+
 <div class="container">
     <div class="row">
-         <div class="col-sm-offset-1 col-sm-10 table-responsive">
-            <table class="table table-hover table-striped text-center">
-                <thead>
-                    <tr class="position-header">
-                        <th>Loan Number</th>
-                        <th>Loan Status</th>
-                        <th>Outstanding</th>
-                        <th>Amt. Avl To Borrow</th>
-                        <th>Margin Call Amt.</th>
-                        <th>Margin Call Due Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="loan in $ctrl.loanList" >
-                        <td><a id="link-3" ng-click="$ctrl.navigateToLoanDetails(loan.id)">{{loan.id}}</a></td>
-                        <td>{{loan.status}}</td>
-                        <td>{{loan.outstanding}}</td>
-                        <td>{{loan.amountAvailableToBorrow}}</td>
-                        <td>{{loan.marginCallAmount}}</td>
-                        <td>{{loan.marginCallDueDate}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading header-color">
+                   
+                    <div class="text-center">
+                        <b>Loan Listing</b>
+                    </div>
+                        
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive panel panel-default">
+                        <table class="table table-hover table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th>Loan Number</th>
+                                    <th>Loan Status</th>
+                                    <th>Outstanding</th>
+                                    <th>Amt. Avl To Borrow</th>
+                                    <th>Margin Call Amt.</th>
+                                    <th>Margin Call Due Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="loan in $ctrl.loanList" >
+                                    <td><a id="link-3" ng-click="$ctrl.navigateToLoanDetails(loan.id)">{{loan.id}}</a></td>
+                                    <td>{{loan.status}}</td>
+                                    <td>{{loan.outstanding}}</td>
+                                    <td>{{loan.amountAvailableToBorrow}}</td>
+                                    <td>{{loan.marginCallAmount}}</td>
+                                    <td>{{loan.marginCallDueDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-right">
+                        <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>           
         </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading header-color">
+                   
+                    <div class="text-center">
+                        <b>Heading 2</b>
+                    </div>
+                        
+                </div>
+                <div class="panel-body">
+                    <div class="panel-default-height">
+                       
+                    </div>
+                    <div class="text-right">
+                        <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+         
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading header-color">
+                   
+                    <div class="text-center">
+                        <b>Heading 2</b>
+                    </div>
+                        
+                </div>
+                <div class="panel-body">
+                    <div class="panel-default-height">
+                       
+                    </div>
+                    <div class="text-right">
+                        <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading header-color">
+                   
+                    <div class="text-center">
+                        <b>Heading 3</b>
+                    </div>
+                        
+                </div>
+                <div class="panel-body">
+                    <div class="panel-default-height">
+                       
+                    </div>
+                    <div class="text-right">
+                        <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+         
     </div>
 </div>
+
+
+
+

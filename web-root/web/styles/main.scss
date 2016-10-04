@@ -34,6 +34,7 @@
 .header-color{
 	background-color:#337ab7 !important;
 	color: #ffffff !important;
+    padding: 10px 0 10px 0;
 }
 
 .app-footer {
@@ -98,6 +99,10 @@ a:hover {
 .table-striped > tbody > tr:nth-of-type(even) {
   background-color: #f9f9f9!important; 
   }
+
+.panel-default-height{
+     min-height: 258px;
+ }
 
 @keyframes fademessage {
     from {

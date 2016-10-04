@@ -17,7 +17,7 @@
             userService.login($ctrl.loginInfo).then(function(response) {
                 $ctrl.loginMessage = response.message;
                 $ctrl.isLoginSuccess = true;
-                $router.navigate(['LoanDetails']);
+                $router.navigate(['LoanListing']);
             }, function(rejection) {
                 $ctrl.loginMessage = rejection.message;
                 $ctrl.isLoginSuccess = false;

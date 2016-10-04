@@ -14,7 +14,7 @@
 
             loanService.getUsesOfLoanProceeds().then(function(response) {
                 $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
-                if (next.params.id) {
+                if (next.params) {
                     var loanId = next.params.id;
                     loanService.getLoanDetails(loanId).then(function(loanData) {
                         $ctrl.loan = loanData.data;

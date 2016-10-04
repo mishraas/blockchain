@@ -19,9 +19,9 @@
             path: '/loandetails',
             name: 'LoanDetails',
             component: 'loanDetails'
-        }, {
+        },{
             path: '/loandetails/:id',
-            name: 'LoanDetailsFromListing',
+            name: 'LoadLoanDetails',
             component: 'loanDetails'
         }, {
             path: '/loanlisting',

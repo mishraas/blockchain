@@ -15,7 +15,7 @@
         }, function() {});
 
         $ctrl.navigateToLoanDetails = function(loanId) {
-            $router.navigate(['LoanDetailsFromListing', { id: loanId }]);
+            $router.navigate(['LoadLoanDetails', { id: loanId }]);
         };
     };
 
@@ -29,14 +29,21 @@
         },
         templateUrl: 'loanlisting/loanlisting.html',
         controller: loanlistingController,
-        $canActivate: ['$nextInstruction', '$prevInstruction', 'userService', function($nextInstruction, $prevInstruction, userService, $router) {
-            if (userService.isAnonymous() === true) {
-                  $router.navigate(['Login']);
-                return false;
-            } else {
-                return true;
+        $canActivate: [
+            '$nextInstruction',
+            '$prevInstruction',
+            'userService',
+            '$router',
+            function($nextInstruction, $prevInstruction, userService,
+                $router) {
+                if (userService.isAnonymous() === true) {
+                    $router.navigate(['Login']);
+                    return false;
+                } else {
+                    return true;
+                }
             }
-        }]
+        ]
     };
 
     module.exports = angular.module('loanlisting')

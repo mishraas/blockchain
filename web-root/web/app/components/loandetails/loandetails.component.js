@@ -14,7 +14,7 @@
 
             loanService.getUsesOfLoanProceeds().then(function(response) {
                 $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
-                if (next.params) {
+                if (next.params && next.params.id) {
                     var loanId = next.params.id;
                     loanService.getLoanDetails(loanId).then(function(loanData) {
                         $ctrl.loan = loanData.data;
@@ -90,6 +90,16 @@
         },
         templateUrl: 'loandetails/loandetails.html',
         controller: loandetailsController,
+        /*$routeConfig: [{
+            path: '',
+            name: 'LoanDetails',
+            component: 'loanDetails',
+            useAsDefault:true
+        },{
+            path: '/:id',
+            name: 'LoadLoanDetails',
+            component: 'loanDetails'
+        }],*/
         $canActivate: [
             '$nextInstruction',
             '$prevInstruction',

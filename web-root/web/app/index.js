@@ -10,6 +10,5 @@
     require('angular-ui-bootstrap');
     require('../external/angular_1_router');
     require('./core');
-    require('../external/sbloc.fonts');
-
+    
 })();

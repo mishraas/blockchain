@@ -15,19 +15,18 @@
         };
 
         $ctrl.isActive = function(viewLocation) {
-            console.log((viewLocation.toLowerCase() === $location.path().split('/')[1].toLowerCase()), $location.path().split('/')[1].toLowerCase(),viewLocation.toLowerCase() );
             return viewLocation.toLowerCase() === $location.path().split('/')[1].toLowerCase();
         };
 
         var updateHeaderMenu = function(userLoggedIn) {
             if (userLoggedIn) {
                 $ctrl.menuItems = [{
-                    name: 'LoanDetails',
-                    title: 'New Loan'
-                }, {
                     name: 'LoanListing',
-                    title: 'Loan Listing'
-                }];
+                    title: 'Home'
+                },{
+                    name: 'LoanDetails',
+                    title: 'Loan Details'
+                } ];
 
                 var currentUser = userService.getLoggedInUser();
                 $ctrl.loginInfo = {

@@ -19,14 +19,13 @@ router.post('/authenticate', function(req, res) {
         var isValidUser = false;
         var reqUsername = requestObj.userName;
         var reqPassword = requestObj.password;
+        
         // match username and password
-        usersList.forEach(function(item){
-            console.log("item----1");
-            console.log(item);            
+        usersList.some(function(item){        
             if(item.userName === reqUsername && item.password === reqPassword){
                 isValidUser = true;
                 authenticUser = item;
-                return false; // break loop iteration
+                return true; // break loop iteration
             }
         });
         return isValidUser;

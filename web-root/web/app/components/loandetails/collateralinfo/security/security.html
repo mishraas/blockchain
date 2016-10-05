@@ -60,8 +60,8 @@
             <div class="form-group ">
                 <label for="loanAmount ">Collateral Sufficient to Approve (Y/N)</label>
                 <div class="row text-center">
-                    <button class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button>
-                    <button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                    <button class="btn btn-success" ng-if=" $ctrl.loanApprovalFlag"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button class="btn btn-danger" ng-if="!$ctrl.loanApprovalFlag"><i class="glyphicon glyphicon-remove"></i></button>
                 </div>
             </div>
         </div>

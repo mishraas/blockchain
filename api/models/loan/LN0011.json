@@ -1,6 +1,6 @@
 {
   "id": "LN0011",
-  "loanAmount": "10000",
+  "loanAmount": "200000",
   "useOfLoanProceeds": {"id":"3","name":"Reason 3 Value"},
   "rateOfInterest": "4.25%",
   "spread": "Spread",
@@ -28,7 +28,7 @@
       "quantity": "123",
       "price": "213",
       "mv": "2133",
-      "collateralValue": "1212"
+      "collateralValue": "2000"
     },
     {
       "id": 18,
@@ -37,7 +37,7 @@
       "quantity": "323",
       "price": "113",
       "mv": "3533",
-      "collateralValue": "3452"
+      "collateralValue": "1000"
     },
     {
       "id": 32,
@@ -46,7 +46,7 @@
       "quantity": "567",
       "price": "454",
       "mv": "5646",
-      "collateralValue": "8768"
+      "collateralValue": "2000"
     },
     {
       "id": 43,
@@ -55,7 +55,7 @@
       "quantity": "314",
       "price": "342",
       "mv": "7688",
-      "collateralValue": "7657"
+      "collateralValue": "1000"
     },
     {
       "id": 31,
@@ -64,7 +64,7 @@
       "quantity": "43",
       "price": "133",
       "mv": "3453",
-      "collateralValue": "3434"
+      "collateralValue": "1000"
     }
   ],
   "borrower": {

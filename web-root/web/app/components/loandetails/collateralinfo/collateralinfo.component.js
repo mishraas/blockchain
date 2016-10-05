@@ -2,7 +2,7 @@
 
 (function() {
 
-    var collateralInfoController = function(loanService, EntityMapper, CollateralAccount, CollateralPosition) {
+    var collateralInfoController = function(loanService, EntityMapper, CollateralAccount, CollateralPosition,$rootScope) {
 
         var $ctrl = this;
         $ctrl.loan.collateralValue = 0;
@@ -24,6 +24,9 @@
             loanService.getAccountSecurities(params).then(function(response) {
                 $ctrl.loan.collateralPositions = new EntityMapper(CollateralPosition).toEntities(response.data['securityDetails'].data);
                 $ctrl.loan.collateralValue = loanService.calculateTotalCollateralAmount($ctrl.loan.collateralPositions);
+                if(!$ctrl.loan.id){
+                $rootScope.$broadcast('showApprovalButton',{value:$ctrl.loan.collateralValue});
+                }
                 $ctrl.securityDetails = response.data['securityDetails'];
                 $ctrl.enableSecuritySection = $ctrl.showPositionFlag = true;
                 $ctrl.enableFormSubmissionBtn();
@@ -57,7 +60,7 @@
     };
 
     collateralInfoController.$inject = ['loanService', 'EntityMapper',
-        'CollateralAccount', 'CollateralPosition'
+        'CollateralAccount', 'CollateralPosition','$rootScope'
     ];
 
     var collateralInfoConfig = {

@@ -27,7 +27,7 @@
                     <span ng-class="{'collateral-heading': !$ctrl.openCollateralInfoSection}">Collateral Info</span>
                     <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openCollateralInfoSection, 'glyphicon-chevron-right': !$ctrl.openCollateralInfoSection,'collateral-heading': !$ctrl.openCollateralInfoSection}"></i>
                 </uib-accordion-heading>
-                <collateral-info ng-if="$ctrl.openCollateralInfoSection" save-loan="$ctrl.saveLoan()" loan="$ctrl.loan" enable-form-submission-btn="$ctrl.enableLoanSubmissionButton()" prev-path="$ctrl.previousRoute"></collateral-info>
+                <collateral-info ng-if="$ctrl.openCollateralInfoSection" save-loan="$ctrl.saveLoan()" loan="$ctrl.loan"enable-form-submission-btn="$ctrl.enableLoanSubmissionButton()" prev-path="$ctrl.previousRoute"></collateral-info>
             </div>
         </div>
     </div>

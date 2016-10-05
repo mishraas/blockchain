@@ -8,8 +8,8 @@
         $ctrl.openCollateralInfoSection = false;
         $ctrl.loan = new EntityMapper(Loan).toEntity({});
         $ctrl.successFlag = $ctrl.errorFlag = false;
-
-        this.$routerOnActivate = function(next) {
+           
+         this.$routerOnActivate = function(next) {
            
 
             loanService.getUsesOfLoanProceeds().then(function(response) {

@@ -16,7 +16,7 @@
         ];
 
         $ctrl.$onInit = function() {
-            if ($ctrl.prevPath === 'loanlisting') {
+            if ($ctrl.loan.id) {
                 $ctrl.showPositionFlag = true;
                 $ctrl.securityDetails = {};
                 $ctrl.securityDetails.columns = $ctrl.positionColumns;

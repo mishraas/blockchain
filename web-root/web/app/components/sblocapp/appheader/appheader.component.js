@@ -22,10 +22,12 @@
             if (userLoggedIn) {
                 $ctrl.menuItems = [{
                     name: 'LoanListing',
-                    title: 'Home'
+                    title: ' Home',
+                    icon:  'glyphicon glyphicon-home'
                 },{
                     name: 'LoanDetails',
-                    title: 'Loan Details'
+                    title: ' Loan Details',
+                    icon:  'glyphicon glyphicon-list'
                 } ];
 
                 var currentUser = userService.getLoggedInUser();

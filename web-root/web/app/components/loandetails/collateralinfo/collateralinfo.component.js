@@ -45,7 +45,7 @@
         this.$onInit = function() {
             loanService.getCollateralAccountList().then(function(response) {
                 $ctrl.collateralAccountList = new EntityMapper(CollateralAccount).toEntities(response.data['collateralAccounts']);
-                if ($ctrl.prevPath === 'loanlisting') {
+                if ($ctrl.loan.id) {
                     $ctrl.collateralAccountList = loadAccountListSection($ctrl.loan.collateralAccounts,
                         $ctrl.collateralAccountList);
                 }

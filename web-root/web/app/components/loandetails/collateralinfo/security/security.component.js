@@ -23,7 +23,7 @@
                 $ctrl.securityDetails = {};
                 $ctrl.securityDetails.columns = $ctrl.positionColumns;
                 $ctrl.securityDetails.data = $ctrl.loan.collateralPositions;
-                $ctrl.loan.collateralValue = loanService.calculateTotalCollateralAmount($ctrl.securityDetails.data);
+                $ctrl.loan.collateralValue = loanService.calculateTotalCollateralAmount($ctrl.securityDetails.data); 
                 
             }
         };

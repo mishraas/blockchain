@@ -2,14 +2,48 @@
 
 (function() {
 
-    var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $rootScope, $anchorScroll, $location, $router, LoanStatus) {
+    var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $rootScope, $anchorScroll, $location, $router, LoanStatus, userService) {
         var $ctrl = this;
         $ctrl.closeOtherAccordian = $ctrl.openLoanInfoSection = $ctrl.disableDraftButton = $ctrl.disableConsentButton = true;
         $ctrl.openCollateralInfoSection = false;
         $ctrl.loan = new EntityMapper(Loan).toEntity({});
         $ctrl.successFlag = $ctrl.errorFlag = false;
-           
-         this.$routerOnActivate = function(next) {
+        $ctrl.loanStatus = false;
+        $ctrl.userRole = userService.getLoggedInUser().roles[0].roleId==2;
+        var status = [{                    
+                    id: 'pendingConsent',
+                    value: 'Pending For Constent'
+                },{
+                    id: 'pendingAcknowledgment',
+                    value: 'pending for Acknowledgment'
+                },{
+                    id: 'pendingApproval',
+                    value: 'pending for Approval'
+                },{
+                    id: 'Approved',
+                    value: 'Approved'
+                }];
+        var roles = [{
+                    id: '1',
+                    value: 'borrower'
+                    },{
+                        id: '2',
+                        value: 'Financial Addviser'
+                    },{
+                        id: '3',
+                        value: 'Lander'
+                    }];
+        var loanStatusCalc = {
+            'saveAsDraft' : false,
+            'pendingConsent' : true,
+            'pendingAcknowledgment' : true,
+            'pendingApproval' : true,
+            'Approved' : true
+        };
+
+        console.log(userService,status,roles);
+        
+        this.$routerOnActivate = function(next) {
            
 
             loanService.getUsesOfLoanProceeds().then(function(response) {
@@ -18,6 +52,7 @@
                     var loanId = next.params.id;
                     loanService.getLoanDetails(loanId).then(function(loanData) {
                         $ctrl.loan = loanData.data;
+                        $ctrl.loanStatus=loanStatusCalc[$ctrl.loan.status];
                         $rootScope.$broadcast('enableRateSection', { loanData: $ctrl.loan });
                         $ctrl.openCollateralInfoSection = true;
                     });
@@ -80,7 +115,7 @@
     };
 
     loandetailsController.$inject = ['loanService', 'EntityMapper', 'Loan', '$timeout', '$rootScope',
-        '$anchorScroll', '$location', '$router', 'LoanStatus'
+        '$anchorScroll', '$location', '$router', 'LoanStatus', 'userService'
     ];
 
     var componentConfig = {

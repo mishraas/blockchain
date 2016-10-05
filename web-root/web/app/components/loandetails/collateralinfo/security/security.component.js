@@ -30,7 +30,6 @@
 
         $rootScope.$on('showApprovalButton',function(evt,collateralValue){
                             $ctrl.loanApprovalFlag = collateralValue.value >= (0.8*$ctrl.loan.loanAmount);
-                
         });
 
     }
@@ -42,7 +41,8 @@
             securityDetails: '<',
             loan: '=',
             showPositionFlag: '=',
-            prevPath: '<'
+            userRole: '<',
+            loanStatus: '<'
         },
         templateUrl: 'loandetails/collateralinfo/security/security.html',
         controller: securityController

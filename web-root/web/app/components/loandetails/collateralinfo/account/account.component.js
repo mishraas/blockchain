@@ -34,7 +34,8 @@
             selectedAccountList: '=',
             loan: '=',
             securitySectionEnable: '&',
-            prevPath: '<'
+            userRole: '<',
+            loanStatus: '<'
         },
         templateUrl: 'loandetails/collateralinfo/account/account.html',
         controller: accountController

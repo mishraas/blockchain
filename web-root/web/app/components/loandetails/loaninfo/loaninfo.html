@@ -1,18 +1,19 @@
-<form ng-submit="$ctrl.onLoanInfoSave(userForm,$ctrl.loanInfo)" novalidate name="userForm" role="form">
+
+<form ng-submit="$ctrl.onLoanInfoSave(userForm,$ctrl.loanInfo)" novalidate name="userForm" role="form" >
     <fieldset>
         <legend>Borrower Info</legend>
         <div class="row">
             <div class="col-sm-2 col-sm-offset-1">
                 <div class="form-group ">
                     <label for="firstName ">First Name</label>
-                    <input type="text " ng-model="$ctrl.loanInfo.borrower.firstName" class="form-control " name="firstName " required focus-if>
+                    <input type="text " ng-model="$ctrl.loanInfo.borrower.firstName" class="form-control " name="firstName " ng-disabled="$ctrl.userRole" required focus-if>
                     <label class="label label-danger" ng-if="userForm.$submitted && userForm.firstName.$error.required">Full Name is required field!</label>
                 </div>
             </div>
             <div class="col-sm-2 ">
                 <div class="form-group ">
                     <label for="middleName ">Middle Name</label>
-                    <input type="text " ng-model="$ctrl.loanInfo.borrower.middleName" class="form-control " name="middleName " />
+                    <input type="text " ng-model="$ctrl.loanInfo.borrower.middleName" class="form-control " name="middleName "  />
                 </div>
             </div>
             <div class="col-sm-2 ">
@@ -76,7 +77,7 @@
     <hr>
     <div class="row ">
         <div class="col-sm-offset-11 col-sm-1 ">
-            <button type="submit" class="btn btn-success pull-right " ng-disabled="userForm.$pristine || userForm.$invalid ">Save & Continue</button>
+            <button type="submit" class="btn btn-success pull-right " ng-disabled="userForm.$pristine || userForm.$invalid " ng-if="!$ctrl.userRole || $ctrl.loanStatus">Save & Continue</button>
         </div>
     </div>
 </form>

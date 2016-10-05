@@ -52,7 +52,8 @@
             useOfLoanProceeds: '=',
             openCollateralAccordian: '&',
             loanInfo: '=',
-            prevPath: '=',
+            userRole: '<',
+            loanStatus: '<',
             showRateSection: '='
         },
         templateUrl: 'loandetails/loaninfo/loaninfo.html',

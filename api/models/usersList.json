@@ -1,0 +1,31 @@
+[{
+    "userName": "borrower",
+    "password": "borrower1234",
+    "emailId": "sunil@gmail.com",
+    "firstName": "Sunil",
+    "lastName": "Kumar",
+    "roles": [{
+        "roleId": "1",
+        "role": "borrower"
+    }]
+}, {
+    "userName": "fadvisor",
+    "password": "fadvisor1234",
+    "emailId": "manoj@gmail.com",
+    "firstName": "Manoj",
+    "lastName": "Pandey",
+    "roles": [{
+        "roleId": "1",
+        "role": "financialadvisor"
+    }]
+}, {
+    "userName": "lender",
+    "password": "lender1234",
+    "emailId": "anshika@gmail.com",
+    "firstName": "Anshika",
+    "lastName": "Gupta",
+    "roles": [{
+        "roleId": "1",
+        "role": "lender"
+    }]
+}]

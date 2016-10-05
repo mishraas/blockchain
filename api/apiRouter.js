@@ -3,45 +3,46 @@ var express = require('express');
 var User = require('./models/User');
 var jwt = require('jsonwebtoken');
 var config = require('../config');
-
+var usersList = require('./models/usersList');
 var router = express.Router();
 var app = express();
 
 app.set('superSecret', config.secret);
 
-
-
-// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+// route to authenticate a user on login (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
-    // find the user
+    var authenticUser;
 
-    var user = new User({
-        userName: 'ashu',
-        password: 'ashu',
-        emailId: 'sunil@gmail.com',
-        firstName: 'Sunil',
-        lastName: 'Kumar',
-         roles: [{
-            'roleId': '1',
-            'role': 'borrower'
-        }]
-    });
-     console.log(user);
-    //if (err) throw err;
-
-    if (!user) {
-        res.json({ success: false, message: 'Authentication failed. User not found.' });
-    } else if (user) {
-
-        // check if password matches
-        if (user.password != req.body.password) {
-            res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+    /* compares the mocked username and password with those provided by user from login screen */
+    function authenticateUser(requestObj){
+        // flag to confirm user validity
+        var isValidUser = false;
+        var reqUsername = requestObj.userName;
+        var reqPassword = requestObj.password;
+        // match username and password
+        usersList.forEach(function(item){
+            console.log("item----1");
+            console.log(item);            
+            if(item.userName === reqUsername && item.password === reqPassword){
+                isValidUser = true;
+                authenticUser = item;
+                return false; // break loop iteration
+            }
+        });
+        return isValidUser;
+    }
+    
+    if (!usersList) {
+        res.json({ success: false, message: 'Server error.' });
+    } else if (usersList) { 
+        var isValid = authenticateUser(req.body);
+        if (!isValid) {
+            res.json({ success: false, message: 'Authentication failed. Invalid username, password.' });
         } else {
-
             // if user is found and password is right
             // create a token
             var tokenExpiry = 1440;
-            var token = jwt.sign(user, app.get('superSecret'), {
+            var token = jwt.sign(authenticUser, app.get('superSecret'), {
                 expiresIn: tokenExpiry // expires in 24 hours
             });
 
@@ -51,11 +52,11 @@ router.post('/authenticate', function(req, res) {
                 message: 'Authenticated Successfully',
                 token: token,
                 tokenExpiry: tokenExpiry,
-                userName: user.userName,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                emailId: user.emailId,
-                roles: user.roles
+                userName: authenticUser.userName,
+                firstName: authenticUser.firstName,
+                lastName: authenticUser.lastName,
+                emailId: authenticUser.emailId,
+                roles: authenticUser.roles
             });
         }
     }

@@ -15,7 +15,7 @@
     "firstName": "Manoj",
     "lastName": "Pandey",
     "roles": [{
-        "roleId": "1",
+        "roleId": "2",
         "role": "financialadvisor"
     }]
 }, {
@@ -25,7 +25,7 @@
     "firstName": "Anshika",
     "lastName": "Gupta",
     "roles": [{
-        "roleId": "1",
+        "roleId": "3",
         "role": "lender"
     }]
 }]

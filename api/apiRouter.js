@@ -3,9 +3,15 @@ var express = require('express');
 var User = require('./models/User');
 var jwt = require('jsonwebtoken');
 var config = require('../config');
+
+/* Load mock JSON data */
 var usersList = require('./models/usersList');
+var loanReasonsData = require("./models/useOfLoans"); 
+var loanListData = require("./models/loanList");
+
 var router = express.Router();
 var app = express();
+
 
 app.set('superSecret', config.secret);
 
@@ -113,15 +119,68 @@ router.post('/logout', function(req, res) {
 });
 
 router.post('/saveLoanData', function(req, res) {
+    var newLoanId;
+    var request = (req.body ? req.body : null);
+    
+    function generateNewLoanId(){
+         return (Math.floor(1000 + Math.random() * 9000));
+    }
+
+    function updateLoanDataWithNewLoan(){     
+         newLoanId = "LN"+generateNewLoanId();
+         var newLoan = {
+            "id": newLoanId,
+            "loanAmount": request.loanAmount,
+            "useOfLoanProceeds": request. useOfLoanProceeds.id,
+            "rateOfInterest ": request.rateOfInterest,
+            "libor": request.libor,
+            "spread": request.spread,
+            "status": "Pending Consent",
+            "creditLimit": "creditLimit",
+            "outstanding": "25000",
+            "creditLineExcess": "creditLineExcess",
+            "amountAvailableToBorrow": "14000",
+            "marginCallAmount": "0",
+            "marginCallDueDate": "NA",
+            "marketValue": "marketValue",
+            "lendableValue": "lendableValue",
+            "collateralValue": "collateralValue",
+            "excess": "excess",
+            "deficit": "deficit",
+            "lenderName": "lenderName",
+            "lenderAddress": "street abc xyz"
+        };
+
+        loanListData.loanList.push(newLoan);    
+    }
+
+    function updateLoanDataWithExistingLoan(){     
+        // todo
+        
+    }
+
+    function checkForNewLoan(){
+         if(request !== null){
+            return (!request.id || request.id === null ? true : false);
+         } else {
+                res.json({
+                success: false,
+                message: 'Error form not saved.'
+            });
+         }
+    }
+
+    var isNewLoan = checkForNewLoan();
+    isNewLoan === true ?  updateLoanDataWithNewLoan() : updateLoanDataWithExistingLoan();
     res.json({
         success: true,
-        loanId : 'LN0011',
+        loanId :  newLoanId,
         message: 'form saved successfully'
     });
 });
 
 router.get('/getUsesOfLoanProceeds', function(req, res) {
-    res.send(require("./models/useOfLoans"));
+    res.send(loanReasonsData);
 });
 router.get('/getCurrentRate', function(req, res) {
     res.send(require("./models/currentRate"));
@@ -136,7 +195,7 @@ router.post('/getAccountSecurities', function(req, res) {
 });
 
 router.get('/getLoanList', function(req, res) {
-    res.send(require("./models/loanList"));
+    res.send(loanListData);
 });
 
 router.get('/getLoanDetails/LN0011', function(req, res) {

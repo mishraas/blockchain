@@ -4,7 +4,7 @@
 
     var loandetailsController = function(loanService, EntityMapper, Loan, $timeout, $rootScope, $anchorScroll, $location, $router, LoanStatus, userService) {
         var $ctrl = this;
-        $ctrl.closeOtherAccordian = $ctrl.openLoanInfoSection = $ctrl.disableDraftButton = $ctrl.disableConsentButton = true;
+        $ctrl.closeOtherAccordian = $ctrl.openLoanInfoSection = $ctrl.disableDraftButton = $ctrl.disableConsentButton = $ctrl.disableCollateralInfoSection = true;
         $ctrl.openCollateralInfoSection = false;
         $ctrl.loan = new EntityMapper(Loan).toEntity({});
         $ctrl.successFlag = $ctrl.errorFlag = false;
@@ -72,7 +72,8 @@
                 $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
                 var loanId = next && next.params && next.params.id;
 
-                if (loanId) {                    
+                if (loanId) {      
+                    $ctrl.disableCollateralInfoSection = false;              
                     loanService.getLoanDetails(loanId).then(function(response) {
                         $ctrl.loan = response.data;
                         enableControls($ctrl.currentUserRole, $ctrl.loan.status);
@@ -87,6 +88,7 @@
 
         $ctrl.expandCollateralInfo = function() {
             $ctrl.openCollateralInfoSection = !$ctrl.openCollateralInfoSection;
+            $ctrl.disableCollateralInfoSection = false;
         };
         $ctrl.approveLoan = function(){
             var loanStatus = {

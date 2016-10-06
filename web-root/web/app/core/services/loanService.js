@@ -18,7 +18,10 @@
                     getAccountSecurities: baseApiUrl + '/getAccountSecurities',
                     saveLoanData: baseApiUrl + '/saveLoanData',
                     getLoanList: baseApiUrl + '/getLoanList',
-                    getLoanDetails: baseApiUrl + '/getLoanDetails/{loanId}'
+                    getLoanDetails: baseApiUrl + '/getLoanDetails/{loanId}',
+                    acknowledgeLoanData: baseApiUrl + '/acknowledgeLoanData',
+                    approveLoanData: baseApiUrl + '/approveLoanData',
+                    sendConsent: baseApiUrl + '/sendConsent'
 
                 };
 
@@ -28,6 +31,8 @@
                     'pendingApproval': 'pendingApproval',
                     'approved': 'approved'
                 };
+
+               
 
                 function getUsesOfLoanProceeds() {
                     return $http.get(REQUEST_URL.getUsesOfLoanProceeds);
@@ -48,11 +53,16 @@
                 function saveLoanData(loanData) {
                     return $http.post(REQUEST_URL.saveLoanData, loanData, null);
                 }
-                function approveLoanData(loanData) {
-                    return $http.post(REQUEST_URL.approveLoanData, loanData, null);
+                function approveLoanData(req) {
+                    return $http.post(REQUEST_URL.approveLoanData, req, null);
                 }
-                function acknowledgeLoanData(loanData) {
-                    return $http.post(REQUEST_URL.acknowledgeLoanData, loanData, null);
+                
+                function acknowledgeLoanData(req) {
+                    return $http.post(REQUEST_URL.acknowledgeLoanData, req, null);
+                }
+
+                function sendConsent(req) {
+                    return $http.post(REQUEST_URL.sendConsent, req, null);
                 }
 
                 function getLoanList(user) {
@@ -89,6 +99,7 @@
                     getLoanStates: getLoanStates,
                     approveLoanData: approveLoanData,
                     acknowledgeLoanData: acknowledgeLoanData,
+                    sendConsent: sendConsent,
                     loanAmount: 0,
                     collateralAccountList: [],
                     selectedAccountList: []

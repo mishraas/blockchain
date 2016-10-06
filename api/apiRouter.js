@@ -27,6 +27,26 @@ function getLoanDetailsById(loanId){
     return loan;
 }
 
+function performUserAction(loanId, action){
+    var isSuccess = false;
+    loanListData.loanList.some(function(item){        
+        if(loanId && item.id === loanId){
+            if(action === "approve"){
+                item.status = 'approved';
+                isSuccess= true;
+            } else if(action === "acknowledge"){
+                 item.status = 'pendingApproval';
+                 isSuccess= true;
+            } else if(action === "sendForConsent"){
+                 item.status = 'pendingAcknowledgement';
+                 isSuccess= true;
+            }
+            return true;
+        }
+    });
+    return isSuccess;
+};
+
 // route to authenticate a user on login (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
     var authenticUser;
@@ -234,6 +254,20 @@ router.get('/getLoanDetails/:loanId', function(req, res) {
     res.send(loan);
 });
 
+router.post('/approveLoanData', function(req, res) {
+    var resp = performUserAction(req.body.loanId, req.body.action);
+    res.send({ success: resp });
+});
+
+router.post('/acknowledgeLoanData', function(req, res) {
+    var resp =  performUserAction(req.body.loanId, req.body.action);
+    res.send({ success: resp });
+});
+
+router.post('/sendConsent', function(req, res) {
+    var resp =  performUserAction(req.body.loanId, req.body.action);
+     res.send({ success: resp });
+});
 ////************* Delete it after use
 router.get('/setup', function(req, res) {
     // create a sample user

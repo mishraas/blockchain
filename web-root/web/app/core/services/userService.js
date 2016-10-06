@@ -22,6 +22,12 @@
                     'lender': 'lender'
                 };
 
+                var USER_ACTIONS = {
+                    'lender': 'approve',
+                    'borrower': 'acknowledge',
+                    'financialAdvisor': 'sendForConsent'
+                };
+
                 function getLoggedInUser() {
                     //loads and return the logged in User from Cookies
                     return new EntityMapper(User).toEntity($cookies.getObject('loggedInUser'));
@@ -100,13 +106,18 @@
                 function getUserRoles() {
                     return USER_ROLES;
                 }
+
+                function getUserActions() {
+                    return USER_ACTIONS;
+                }
                 return {
                     login: login,
                     logout: logout,
                     getLoggedInUser: getLoggedInUser,
                     isAnonymous: isAnonymous,
                     getToken: getToken,
-                    getUserRoles: getUserRoles
+                    getUserRoles: getUserRoles,
+                    getUserActions: getUserActions
                 };
             }
         ]);

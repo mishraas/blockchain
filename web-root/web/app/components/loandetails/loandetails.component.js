@@ -12,6 +12,7 @@
         var user = userService.getLoggedInUser();
         $ctrl.loanStates = loanService.getLoanStates();
         $ctrl.UserRoles = userService.getUserRoles();
+        $ctrl.userActions = userService.getUserActions();
 
         $ctrl.currentUserRole = user && (user.roles instanceof Array) && user.roles[0].role;
 
@@ -91,20 +92,14 @@
             $ctrl.disableCollateralInfoSection = false;
         };
         $ctrl.approveLoan = function(){
-            var loanStatus = {
-                id: 'approved',
-                value: 'approved'
+            var reqObj = {
+                loanId : $ctrl.loan.id,
+                action : $ctrl.userActions.lender
             };
-            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
-            $ctrl.loan.status = status;
-            loanService.approveLoanData($ctrl.loan).then(function(response) {
-                if (response.data.success) {
-                    $location.hash('form-message');
-                    $ctrl.successFlag = true;
-                    $ctrl.loan.id = response.data.loanId;
-                    $timeout(function() {
-                        $ctrl.successFlag = false;
-                    }, 5000);
+
+            loanService.approveLoanData(reqObj).then(function(response) {
+                if (response.data.success && response.data.success === true) {
+                   $router.navigate(['LoanListing']);
                 }
             }, function(err) {
                 console.log(err);
@@ -112,24 +107,18 @@
                 $ctrl.errorFlag = true;
                 $timeout(function() {
                     $ctrl.errorFlag = false;
-                }, 5000);
+                }, 10000);
             });
         };
         $ctrl.acknowledgeLoan = function(){
-            var loanStatus = {
-                id: 'pendingApproval',
-                value: 'Pending For Approval'
+             var reqObj = {
+                loanId : $ctrl.loan.id,
+                action : $ctrl.userActions.borrower
             };
-            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
-            $ctrl.loan.status = status;
-            loanService.acknowledgeLoanData($ctrl.loan).then(function(response) {
-                if (response.data.success) {
-                    $location.hash('form-message');
-                    $ctrl.successFlag = true;
-                    $ctrl.loan.id = response.data.loanId;
-                    $timeout(function() {
-                        $ctrl.successFlag = false;
-                    }, 5000);
+           
+            loanService.acknowledgeLoanData(reqObj).then(function(response) {
+                if (response.data.success && response.data.success === true) {
+                  $router.navigate(['LoanListing']);
                 }
             }, function(err) {
                 console.log(err);
@@ -137,7 +126,7 @@
                 $ctrl.errorFlag = true;
                 $timeout(function() {
                     $ctrl.errorFlag = false;
-                }, 5000);
+                }, 10000);
             });
         };
         $ctrl.saveLoan = function() {
@@ -155,7 +144,7 @@
                     $ctrl.loan.id = response.data.loanId;
                     $timeout(function() {
                         $ctrl.successFlag = false;
-                    }, 5000);
+                    }, 10000);
                 }
             }, function(err) {
                 console.log(err);
@@ -167,17 +156,14 @@
             });
         };
 
-        $ctrl.saveAndContinue = function() {
-
-            var loanStatus = {
-                id: 'pendingAcknowledgement',
-                value: 'Pending For Acknowledgement'
+        $ctrl.sendConsent = function() {
+            var reqObj = {
+                loanId : $ctrl.loan.id,
+                action : $ctrl.userActions.financialAdvisor
             };
-            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
-            $ctrl.loan.status = status;
-            loanService.saveLoanData($ctrl.loan).then(function(response) {
-                if (response.data.success) {
-                   $router.navigate(['LoanListing']);
+            loanService.sendConsent(reqObj).then(function(response) {
+               if (response.data.success && response.data.success === true) {
+                  $router.navigate(['LoanListing']);
                 }
             }, function(err) {
                 console.log(err);
@@ -185,7 +171,7 @@
                 $location.hash('form-message');
                 $timeout(function() {
                     $ctrl.errorFlag = false;
-                }, 3000);
+                }, 10000);
             });
         };
 

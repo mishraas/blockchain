@@ -36,10 +36,10 @@
                     break;
                 case $ctrl.UserRoles.borrower:
                     if (loanStatus === $ctrl.loanStates.pendingAcknowledgement) {
-                        $ctrl.isAcknowledge = true;                        
+                        $ctrl.isAcknowledge = false;                        
                          
                     } else {
-                        $ctrl.isAcknowledge = false;                        
+                        $ctrl.isAcknowledge = true;                        
                     }
 
                     $ctrl.isLoanInfoSaveAndContinue = false; 
@@ -47,14 +47,14 @@
                     $ctrl.isSendConsent = false; 
                     $ctrl.isCalculateCollateral = false; 
                     $ctrl.isApprove = false;
-                    $ctrl.isInputControls = false;
+                    $ctrl.isInputControls = true;
                     break;
                 case $ctrl.UserRoles.lender:
                     if (loanStatus === $ctrl.loanStates.pendingApproval) {
-                        $ctrl.isApprove = true;                        
+                        $ctrl.isApprove = false;                        
                          
                     } else {
-                        $ctrl.isApprove = false;
+                        $ctrl.isApprove = true;
                     }
 
                     $ctrl.isLoanInfoSaveAndContinue = false; 
@@ -62,7 +62,7 @@
                     $ctrl.isSendConsent = false; 
                     $ctrl.isCalculateCollateral = false; 
                     $ctrl.isAcknowledge = false;
-                    $ctrl.isInputControls = false;
+                    $ctrl.isInputControls = true;
                     break;
             }
         }   

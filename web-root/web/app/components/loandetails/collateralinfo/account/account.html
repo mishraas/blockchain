@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="col-sm-2 col-sm-offset-1" ng-if="!!$ctrl.collateralAccountList.length">
-                <button class="btn btn-primary " ng-click="$ctrl.enableSecuritySection()">Generate Collateral Value</button>
+                <button class="btn btn-primary " ng-click="$ctrl.enableSecuritySection()" ng-if="isCalculateCollateral">Generate Collateral Value</button>
             </div>
         </div>
     </div>

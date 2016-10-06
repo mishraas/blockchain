@@ -16,6 +16,11 @@
                     logout: baseApiUrl + '/logout'
                 };
 
+                var USER_ROLES = {
+                    'borrower': 'borrower',
+                    'financialAdvisor': 'financial advisor',
+                    'lender': 'lender'
+                };
 
                 function getLoggedInUser() {
                     //loads and return the logged in User from Cookies
@@ -92,12 +97,16 @@
                     return currentUser && currentUser.token;
                 }
 
+                function getUserRoles() {
+                    return USER_ROLES;
+                }
                 return {
                     login: login,
                     logout: logout,
                     getLoggedInUser: getLoggedInUser,
                     isAnonymous: isAnonymous,
-                    getToken: getToken
+                    getToken: getToken,
+                    getUserRoles: getUserRoles
                 };
             }
         ]);

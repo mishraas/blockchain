@@ -9,56 +9,80 @@
         $ctrl.loan = new EntityMapper(Loan).toEntity({});
         $ctrl.successFlag = $ctrl.errorFlag = false;
         $ctrl.loanStatus = false;
-        $ctrl.userRole = userService.getLoggedInUser().roles[0].roleId==2;
-        var status = [{                    
-                    id: 'pendingConsent',
-                    value: 'Pending For Constent'
-                },{
-                    id: 'pendingAcknowledgment',
-                    value: 'pending for Acknowledgment'
-                },{
-                    id: 'pendingApproval',
-                    value: 'pending for Approval'
-                },{
-                    id: 'Approved',
-                    value: 'Approved'
-                }];
-        var roles = [{
-                    id: '1',
-                    value: 'borrower'
-                    },{
-                        id: '2',
-                        value: 'Financial Addviser'
-                    },{
-                        id: '3',
-                        value: 'Lander'
-                    }];
-        var loanStatusCalc = {
-            'saveAsDraft' : false,
-            'pendingConsent' : true,
-            'pendingAcknowledgment' : true,
-            'pendingApproval' : true,
-            'Approved' : true
-        };
+        var user = userService.getLoggedInUser();
+        $ctrl.loanStates = loanService.getLoanStates();
+        $ctrl.UserRoles = userService.getUserRoles();
 
-        console.log(userService,status,roles);
+        $ctrl.currentUserRole = user && (user.roles instanceof Array) && user.roles[0].role;
         
-        this.$routerOnActivate = function(next) {
-           
+        function enableControls(userRole, loanStatus) {
+            switch (userRole) {
+                case $ctrl.UserRoles.financialAdvisor:
+                    if (loanStatus === $ctrl.loanStates.pendingConsent) {
+                        $ctrl.isLoanInfoSaveAndContinue = true; 
+                        $ctrl.isSaveDraft = true;
+                        $ctrl.isSendConsent = true; 
+                        $ctrl.isCalculateCollateral = true; 
+                        $ctrl.isInputControls = true; 
+                    } else {
+                        $ctrl.isLoanInfoSaveAndContinue = false;    
+                        $ctrl.isSaveDraft = false;
+                        $ctrl.isSendConsent = false; 
+                        $ctrl.isCalculateCollateral = false;
+                        $ctrl.isInputControls = false;
+                    }
+                    $ctrl.isAcknowledge = false;
+                    $ctrl.isApprove = false;
+                    break;
+                case $ctrl.UserRoles.borrower:
+                    if (loanStatus === $ctrl.loanStates.pendingAcknowledgement) {
+                        $ctrl.isAcknowledge = true;                        
+                         
+                    } else {
+                        $ctrl.isAcknowledge = false;                        
+                    }
 
+                    $ctrl.isLoanInfoSaveAndContinue = false; 
+                    $ctrl.isSaveDraft = false;
+                    $ctrl.isSendConsent = false; 
+                    $ctrl.isCalculateCollateral = false; 
+                    $ctrl.isApprove = false;
+                    $ctrl.isInputControls = false;
+                    break;
+                case $ctrl.UserRoles.lender:
+                    if (loanStatus === $ctrl.loanStates.pendingApproval) {
+                        $ctrl.isApprove = true;                        
+                         
+                    } else {
+                        $ctrl.isApprove = false;
+                    }
+
+                    $ctrl.isLoanInfoSaveAndContinue = false; 
+                    $ctrl.isSaveDraft = false;
+                    $ctrl.isSendConsent = false; 
+                    $ctrl.isCalculateCollateral = false; 
+                    $ctrl.isAcknowledge = false;
+                    $ctrl.isInputControls = false;
+                    break;
+            }
+        }   
+
+        this.$routerOnActivate = function(next) {
             loanService.getUsesOfLoanProceeds().then(function(response) {
                 $ctrl.useOfLoanProceeds = response.data['useOfLoanProceeds'];
-                if (next.params && next.params.id) {
-                    var loanId = next.params.id;
-                    loanService.getLoanDetails(loanId).then(function(loanData) {
-                        $ctrl.loan = loanData.data;
-                        $ctrl.loanStatus=loanStatusCalc[$ctrl.loan.status];
+                var loanId = next && next.params && next.params.id;
+
+                if (loanId) {                    
+                    loanService.getLoanDetails(loanId).then(function(response) {
+                        $ctrl.loan = response.data;
+                        enableControls($ctrl.currentUserRole, $ctrl.loan.status);
                         $rootScope.$broadcast('enableRateSection', { loanData: $ctrl.loan });
                         $ctrl.openCollateralInfoSection = true;
                     });
+                } else {
+                    enableControls($ctrl.currentUserRole, $ctrl.loanStates.pendingConsent);
                 }
             });
-
         };
 
         $ctrl.expandCollateralInfo = function() {
@@ -124,17 +148,7 @@
             loanInfo: '<'
         },
         templateUrl: 'loandetails/loandetails.html',
-        controller: loandetailsController,
-        /*$routeConfig: [{
-            path: '',
-            name: 'LoanDetails',
-            component: 'loanDetails',
-            useAsDefault:true
-        },{
-            path: '/:id',
-            name: 'LoadLoanDetails',
-            component: 'loanDetails'
-        }],*/
+        controller: loandetailsController,        
         $canActivate: [
             '$nextInstruction',
             '$prevInstruction',

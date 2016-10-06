@@ -171,9 +171,23 @@ router.post('/saveLoanData', function(req, res) {
         loanListData.loanList.push(newLoan);    
     }
 
-    function updateLoanDataWithExistingLoan(){     
-        // todo
-        
+    function updateLoanDataWithExistingLoan(loanId){       
+        loanListData.loanList.some(function(item){        
+            if(loanId && item.id === loanId){
+                item.loanAmount = request.loanAmount;
+                item.useOfLoanProceeds = request.useOfLoanProceeds;
+                item.rateOfInterest = request.rateOfInterest;
+                item.libor = request.libor;
+                item.spread = request.spread;
+                item.custodian = request.custodian;
+                item.broker = request.broker;
+                item.collateralAccounts = request.collateralAccounts;
+                item.collateralPositions = request.collateralPositions;
+                item.borrower = request.borrower;
+                item.collateralValue = request.collateralValue;
+                return true;
+            }
+        });
     }
 
     function checkForNewLoan(){
@@ -188,7 +202,7 @@ router.post('/saveLoanData', function(req, res) {
     }
 
     var isNewLoan = checkForNewLoan();
-    isNewLoan === true ?  updateLoanDataWithNewLoan() : updateLoanDataWithExistingLoan();
+    isNewLoan === true ?  updateLoanDataWithNewLoan() : updateLoanDataWithExistingLoan(request.id);
     res.json({
         success: true,
         loanId :  newLoanId,

@@ -12,7 +12,7 @@
       <div id="appnavbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li  ng-repeat="menu in $ctrl.menuItems" ng-class="{'active': $ctrl.isActive(menu.name)}">
-	      	<a ng-link="[menu.name]" ><span class="{{menu.icon}}"></span>{{menu.title}}</a>
+	      	<a ng-link="[menu.name]"><span class="{{menu.icon}}"></span>{{menu.title}}</a>
 	      </li>
         </ul>
         <ul class="nav navbar-nav navbar-right" ng-if="!$ctrl.isAnonymous">

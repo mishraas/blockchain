@@ -20,23 +20,28 @@
 
         var updateHeaderMenu = function(userLoggedIn) {
             if (userLoggedIn) {
-                $ctrl.menuItems = [{
-                    name: 'LoanListing',
-                    title: ' Home',
-                    icon: 'glyphicon glyphicon-home'
-                }, {
-                    name: 'LoanDetails',
-                    title: ' Loan Details',
-                    icon: 'glyphicon glyphicon-list'
-                }];
-
                 var currentUser = userService.getLoggedInUser();
                 $ctrl.loginInfo = {
                     userId: currentUser && currentUser.userName,
                     userName: currentUser && currentUser.userName,
                     fullName: (currentUser && currentUser.firstName) + ' ' + (currentUser && currentUser.lastName),
-                    logoutLink: 'logout'
+                    logoutLink: 'logout',
+                    userRole: currentUser.roles[0].role
                 };
+
+                $ctrl.menuItems = [{
+                    name: 'LoanListing',
+                    title: ' Home',
+                    icon: 'glyphicon glyphicon-home'
+                }];
+
+                if($ctrl.loginInfo.userRole === 'financialAdvisor'){
+                    $ctrl.menuItems.push({
+                        name: 'LoanDetails',
+                        title: ' Loan Details',
+                        icon: 'glyphicon glyphicon-list'
+                    });    
+                }
             } else {
                 $ctrl.menuItems = [];
                 $ctrl.loginInfo = {};
@@ -61,8 +66,7 @@
     var componentConfig = {
         // isolated scope binding
         bindings: {
-            menuItems: '<',
-            loginInfo: '<'
+            menuItems: '<'
         },
         templateUrl: 'sblocapp/appheader/appheader.html',
         controller: appheaderController

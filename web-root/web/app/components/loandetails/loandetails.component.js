@@ -51,10 +51,10 @@
                     break;
                 case $ctrl.UserRoles.lender:
                     if (loanStatus === $ctrl.loanStates.pendingApproval) {
-                        $ctrl.isApprove = false;                        
+                        $ctrl.isApprove = true;                        
                          
                     } else {
-                        $ctrl.isApprove = true;
+                        $ctrl.isApprove = false;
                     }
 
                     $ctrl.isLoanInfoSaveAndContinue = false; 
@@ -88,8 +88,64 @@
         $ctrl.expandCollateralInfo = function() {
             $ctrl.openCollateralInfoSection = !$ctrl.openCollateralInfoSection;
         };
-
+        $ctrl.approveLoan = function(){
+            var loanStatus = {
+                id: 'approved',
+                value: 'approved'
+            };
+            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
+            $ctrl.loan.status = status;
+            loanService.approveLoanData($ctrl.loan).then(function(response) {
+                if (response.data.success) {
+                    $location.hash('form-message');
+                    $ctrl.successFlag = true;
+                    $ctrl.loan.id = response.data.loanId;
+                    $timeout(function() {
+                        $ctrl.successFlag = false;
+                    }, 5000);
+                }
+            }, function(err) {
+                console.log(err);
+                $location.hash('form-message');
+                $ctrl.errorFlag = true;
+                $timeout(function() {
+                    $ctrl.errorFlag = false;
+                }, 5000);
+            });
+        };
+        $ctrl.acknowledgeLoan = function(){
+            var loanStatus = {
+                id: 'pendingApproval',
+                value: 'Pending For Approval'
+            };
+            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
+            $ctrl.loan.status = status;
+            loanService.acknowledgeLoanData($ctrl.loan).then(function(response) {
+                if (response.data.success) {
+                    $location.hash('form-message');
+                    $ctrl.successFlag = true;
+                    $ctrl.loan.id = response.data.loanId;
+                    $timeout(function() {
+                        $ctrl.successFlag = false;
+                    }, 5000);
+                }
+            }, function(err) {
+                console.log(err);
+                $location.hash('form-message');
+                $ctrl.errorFlag = true;
+                $timeout(function() {
+                    $ctrl.errorFlag = false;
+                }, 5000);
+            });
+        };
         $ctrl.saveLoan = function() {
+
+            var loanStatus = {
+                id: 'pendingConsent',
+                value: 'Pending For Constent'
+            };
+            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
+            $ctrl.loan.status = status;
             loanService.saveLoanData($ctrl.loan).then(function(response) {
                 if (response.data.success) {
                     $location.hash('form-message');
@@ -110,9 +166,10 @@
         };
 
         $ctrl.saveAndContinue = function() {
+
             var loanStatus = {
-                id: 'pendingConsent',
-                value: 'Pending For Constent'
+                id: 'pendingAcknowledgement',
+                value: 'Pending For Acknowledgement'
             };
             var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
             $ctrl.loan.status = status;

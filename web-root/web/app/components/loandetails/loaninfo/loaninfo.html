@@ -46,7 +46,7 @@
         <div class="row ">
             <div class="col-sm-3 col-sm-offset-1">
                 <div class="form-group ">
-                    <label for="loanAmount ">Desired Loan Amount</label>
+                    <label for="loanAmount ">Loan Amount Requested</label>
                         <span class="input-group-addon">$</span>
                         <input type="text" ng-disabled="$ctrl.isInputControls" ng-pattern="$ctrl.loanAmountRegExp" class="form-control" name="loanAmount" ng-blur="$ctrl.enableRateSection(userForm.loanAmount.$valid)" ng-model="$ctrl.loanInfo.loanAmount" required></input>
                     <label ng-if="userForm.loanAmount.$invalid && userForm.loanAmount.$dirty" class="label label-danger">Only decimal amount allowed (Ex: 12, 12.12)</label>

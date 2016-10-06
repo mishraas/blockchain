@@ -39,8 +39,8 @@
             <button class="btn btn-success" ng-disabled="$ctrl.disableDraftButton" ng-if="$ctrl.isSaveDraft" ng-click="$ctrl.saveLoan()">Save as Draft</button>
             <button class="btn btn-danger" ng-disabled="$ctrl.disableConsentButton" ng-if="$ctrl.isSendConsent" ng-click="$ctrl.saveAndContinue()">Send for Consent</button>
 
-            <button class="btn btn-success"  ng-if="$ctrl.isApprove" ng-click="$ctrl.saveLoan()">Approve</button>
-            <button class="btn btn-success"  ng-if="$ctrl.isAcknowledge" ng-click="$ctrl.saveAndContinue()">Acknowledge</button>
+            <button class="btn btn-success"  ng-if="$ctrl.isApprove" ng-click="$ctrl.approveLoan()">Approve</button>
+            <button class="btn btn-success"  ng-if="$ctrl.isAcknowledge" ng-click="$ctrl.acknowledgeLoan()">Acknowledge</button>
         </div>
     </div>
 </div>

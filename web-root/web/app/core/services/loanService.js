@@ -48,6 +48,12 @@
                 function saveLoanData(loanData) {
                     return $http.post(REQUEST_URL.saveLoanData, loanData, null);
                 }
+                function approveLoanData(loanData) {
+                    return $http.post(REQUEST_URL.approveLoanData, loanData, null);
+                }
+                function acknowledgeLoanData(loanData) {
+                    return $http.post(REQUEST_URL.acknowledgeLoanData, loanData, null);
+                }
 
                 function getLoanList(user) {
                     return $http.get(REQUEST_URL.getLoanList, { params: user });
@@ -81,6 +87,8 @@
                     getLoanDetails: getLoanDetails,
                     calculateTotalCollateralAmount: calculateTotalCollateralAmount,
                     getLoanStates: getLoanStates,
+                    approveLoanData: approveLoanData,
+                    acknowledgeLoanData: acknowledgeLoanData,
                     loanAmount: 0,
                     collateralAccountList: [],
                     selectedAccountList: []

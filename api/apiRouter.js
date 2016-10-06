@@ -15,6 +15,18 @@ var app = express();
 
 app.set('superSecret', config.secret);
 
+function getLoanDetailsById(loanId){
+    var loanList = loanListData.loanList;
+    var loan = null;
+    loanList.some(function(item){        
+        if(loanId && item.id === loanId){
+            loan = item;
+            return true;
+        }
+    });
+    return loan;
+}
+
 // route to authenticate a user on login (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
     var authenticUser;
@@ -126,15 +138,21 @@ router.post('/saveLoanData', function(req, res) {
          return (Math.floor(1000 + Math.random() * 9000));
     }
 
-    function updateLoanDataWithNewLoan(){     
+    function updateLoanDataWithNewLoan(){    
          newLoanId = "LN"+generateNewLoanId();
          var newLoan = {
             "id": newLoanId,
             "loanAmount": request.loanAmount,
-            "useOfLoanProceeds": request. useOfLoanProceeds.id,
-            "rateOfInterest ": request.rateOfInterest,
+            "useOfLoanProceeds": request.useOfLoanProceeds,
+            "rateOfInterest": request.rateOfInterest,
             "libor": request.libor,
             "spread": request.spread,
+            "custodian": request.custodian,
+            "broker": request.broker,
+             "collateralAccounts": request.collateralAccounts,
+            "collateralPositions": request.collateralPositions,
+            "borrower": request.borrower,
+            "collateralValue": request.collateralValue,
             "status": "Pending Consent",
             "creditLimit": "creditLimit",
             "outstanding": "25000",
@@ -144,7 +162,6 @@ router.post('/saveLoanData', function(req, res) {
             "marginCallDueDate": "NA",
             "marketValue": "marketValue",
             "lendableValue": "lendableValue",
-            "collateralValue": "collateralValue",
             "excess": "excess",
             "deficit": "deficit",
             "lenderName": "lenderName",
@@ -198,8 +215,9 @@ router.get('/getLoanList', function(req, res) {
     res.send(loanListData);
 });
 
-router.get('/getLoanDetails/LN0011', function(req, res) {
-    res.send(require("./models/loan/LN0011"));
+router.get('/getLoanDetails/:loanId', function(req, res) {
+    var loan = getLoanDetailsById(req.params.loanId);
+    res.send(loan);
 });
 
 ////************* Delete it after use

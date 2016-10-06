@@ -1,6 +1,6 @@
+@import './node_modules/font-awesome/css/font-awesome';
 @import './node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import './node_modules/ui-select/dist/select';
-@import './node_modules/font-awesome/css/font-awesome';
 @import '_ui-overrides';
 @import 'variables';
 .listbox {
@@ -136,6 +136,14 @@ a:hover {
     to {
         opacity: 0
     }
+}
+
+.fa-check{
+    color : $approvaltick;
+}
+
+.fa-times{
+    color : $rejectcross;
 }
 
 @media screen and (max-width: 767px) {

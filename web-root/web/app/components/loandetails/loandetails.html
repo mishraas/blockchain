@@ -22,8 +22,8 @@
     </div>
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-            <div uib-accordion-group class="panel-primary" is-open="$ctrl.openCollateralInfoSection" is-disabled="!$ctrl.openCollateralInfoSection" ng-class="{'collateral-heading': !$ctrl.openCollateralInfoSection,'text-muted':false}">
-                <uib-accordion-heading>
+            <div uib-accordion-group class="panel-primary" is-open="$ctrl.openCollateralInfoSection" is-disabled="$ctrl.disableCollateralInfoSection" ng-class="{'collateral-heading': !$ctrl.openCollateralInfoSection,'text-muted':false}">
+                <uib-accordion-heading ng-click="$ctrl.openCollateralInfoSection=!$ctrl.openCollateralInfoSection">
                     <span ng-class="{'collateral-heading': !$ctrl.openCollateralInfoSection}">Collateral Info</span>
                     <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openCollateralInfoSection, 'glyphicon-chevron-right': !$ctrl.openCollateralInfoSection,'collateral-heading': !$ctrl.openCollateralInfoSection}"></i>
                 </uib-accordion-heading>

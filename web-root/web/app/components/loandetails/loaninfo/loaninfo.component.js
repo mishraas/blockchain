@@ -52,9 +52,9 @@
             useOfLoanProceeds: '=',
             openCollateralAccordian: '&',
             loanInfo: '=',
-            userRole: '<',
-            loanStatus: '<',
-            showRateSection: '='
+            showRateSection: '=',
+            isInputControls: '<',
+            isLoanInfoSaveAndContinue: '<'
         },
         templateUrl: 'loandetails/loaninfo/loaninfo.html',
         controller: loanInfoController

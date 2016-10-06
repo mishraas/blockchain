@@ -14,22 +14,22 @@
         $ctrl.UserRoles = userService.getUserRoles();
 
         $ctrl.currentUserRole = user && (user.roles instanceof Array) && user.roles[0].role;
-        
+
         function enableControls(userRole, loanStatus) {
-            switch (userRole) {
+            switch(userRole) {
                 case $ctrl.UserRoles.financialAdvisor:
                     if (loanStatus === $ctrl.loanStates.pendingConsent) {
                         $ctrl.isLoanInfoSaveAndContinue = true; 
                         $ctrl.isSaveDraft = true;
                         $ctrl.isSendConsent = true; 
                         $ctrl.isCalculateCollateral = true; 
-                        $ctrl.isInputControls = true; 
+                        $ctrl.isInputControls = false; 
                     } else {
                         $ctrl.isLoanInfoSaveAndContinue = false;    
                         $ctrl.isSaveDraft = false;
                         $ctrl.isSendConsent = false; 
                         $ctrl.isCalculateCollateral = false;
-                        $ctrl.isInputControls = false;
+                        $ctrl.isInputControls = true;
                     }
                     $ctrl.isAcknowledge = false;
                     $ctrl.isApprove = false;

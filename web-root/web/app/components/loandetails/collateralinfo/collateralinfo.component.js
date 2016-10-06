@@ -68,8 +68,8 @@
             loan: '=',
             saveLoan: '&',
             enableFormSubmissionBtn: '&',
-            userRole: '<',
-            loanStatus: '<'
+            isInputControls: '<',
+            isCalculateCollateral: '<'
         },
         templateUrl: 'loandetails/collateralinfo/collateralinfo.html',
         controller: collateralInfoController

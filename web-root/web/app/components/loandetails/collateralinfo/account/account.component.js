@@ -34,8 +34,8 @@
             selectedAccountList: '=',
             loan: '=',
             securitySectionEnable: '&',
-            userRole: '<',
-            loanStatus: '<'
+            isInputControls: '<',
+            isCalculateCollateral: '<'
         },
         templateUrl: 'loandetails/collateralinfo/account/account.html',
         controller: accountController

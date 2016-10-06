@@ -15,7 +15,7 @@
                 <div uib-accordion-group class="panel-primary" is-open="$ctrl.openLoanInfoSection">
                     <uib-accordion-heading ng-click="$ctrl.openLoanInfoSection=!$ctrl.openLoanInfoSection"> Loan Info <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openLoanInfoSection, 'glyphicon-chevron-right': !$ctrl.openLoanInfoSection}"></i>
                     </uib-accordion-heading>
-                    <loan-info use-of-loan-proceeds="$ctrl.useOfLoanProceeds" open-collateral-accordian="$ctrl.expandCollateralInfo()" loan-info="$ctrl.loan" prev-path="$ctrl.previousRoute" show-rate-section="$ctrl.showRateSection"></loan-info>
+                    <loan-info use-of-loan-proceeds="$ctrl.useOfLoanProceeds" open-collateral-accordian="$ctrl.expandCollateralInfo()" loan-info="$ctrl.loan" prev-path="$ctrl.previousRoute"  show-rate-section="$ctrl.showRateSection" is-loan-info-save-and-continue="$ctrl.isLoanInfoSaveAndContinue" is-input-controls="$ctrl.isInputControls"></loan-info>
                 </div>
             </uib-accordion>
         </div>
@@ -27,7 +27,7 @@
                     <span ng-class="{'collateral-heading': !$ctrl.openCollateralInfoSection}">Collateral Info</span>
                     <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': $ctrl.openCollateralInfoSection, 'glyphicon-chevron-right': !$ctrl.openCollateralInfoSection,'collateral-heading': !$ctrl.openCollateralInfoSection}"></i>
                 </uib-accordion-heading>
-                <collateral-info ng-if="$ctrl.openCollateralInfoSection" save-loan="$ctrl.saveLoan()" loan="$ctrl.loan" enable-form-submission-btn="$ctrl.enableLoanSubmissionButton()" ></collateral-info>
+                <collateral-info ng-if="$ctrl.openCollateralInfoSection" save-loan="$ctrl.saveLoan()" loan="$ctrl.loan" enable-form-submission-btn="$ctrl.enableLoanSubmissionButton()" is-calculate-collateral="$ctrl.isCalculateCollateral" is-input-controls="$ctrl.isInputControls" ></collateral-info>
             </div>
         </div>
     </div>
@@ -38,6 +38,9 @@
         <div class="pull-right">
             <button class="btn btn-success" ng-disabled="$ctrl.disableDraftButton" ng-if="$ctrl.isSaveDraft" ng-click="$ctrl.saveLoan()">Save as Draft</button>
             <button class="btn btn-danger" ng-disabled="$ctrl.disableConsentButton" ng-if="$ctrl.isSendConsent" ng-click="$ctrl.saveAndContinue()">Send for Consent</button>
+
+            <button class="btn btn-success"  ng-if="$ctrl.isApprove" ng-click="$ctrl.saveLoan()">Approve</button>
+            <button class="btn btn-success"  ng-if="$ctrl.isAcknowledge" ng-click="$ctrl.saveAndContinue()">Acknowledge</button>
         </div>
     </div>
 </div>

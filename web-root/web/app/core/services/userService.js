@@ -18,7 +18,7 @@
 
                 var USER_ROLES = {
                     'borrower': 'borrower',
-                    'financialAdvisor': 'financial advisor',
+                    'financialAdvisor': 'financialAdvisor',
                     'lender': 'lender'
                 };
 

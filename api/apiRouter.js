@@ -153,7 +153,7 @@ router.post('/saveLoanData', function(req, res) {
             "collateralPositions": request.collateralPositions,
             "borrower": request.borrower,
             "collateralValue": request.collateralValue,
-            "status": "Pending Consent",
+            "status": "pendingConsent",
             "creditLimit": "creditLimit",
             "outstanding": "25000",
             "creditLineExcess": "creditLineExcess",

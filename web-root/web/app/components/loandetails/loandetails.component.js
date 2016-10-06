@@ -31,7 +31,7 @@
                         $ctrl.isCalculateCollateral = false;
                         $ctrl.isInputControls = true;
                     }
-                    $ctrl.isAcknowledge = false;
+                    $ctrl.isAcknowledge = true;
                     $ctrl.isApprove = false;
                     break;
                 case $ctrl.UserRoles.borrower:
@@ -61,7 +61,7 @@
                     $ctrl.isSaveDraft = false;
                     $ctrl.isSendConsent = false; 
                     $ctrl.isCalculateCollateral = false; 
-                    $ctrl.isAcknowledge = false;
+                    $ctrl.isAcknowledge = true;
                     $ctrl.isInputControls = true;
                     break;
             }

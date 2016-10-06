@@ -8,7 +8,7 @@
     },
     "rateOfInterest": "4.25%",
     "spread": "Spread",
-    "status": "Pending Approval",
+    "status": "pendingApproval",
     "collateralValue": 24523,
     "collateralAccounts": [{
       "id": "1",
@@ -92,7 +92,7 @@
     },
     "rateOfInterest": "6.05%",
     "spread": "Spread",
-    "status": "Pending Acknowledgement",
+    "status": "pendingAcknowledgement",
     "collateralValue": 64825,
     "collateralAccounts": [{
       "id": "1",
@@ -157,7 +157,7 @@
     },
     "rateOfInterest": "3.89%",
     "spread": "Spread",
-    "status": "Approved",
+    "status": "approved",
     "collateralValue": 74923,
     "collateralAccounts": [{
       "id": "5",

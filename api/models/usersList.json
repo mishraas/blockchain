@@ -16,7 +16,7 @@
     "lastName": "Pandey",
     "roles": [{
         "roleId": "2",
-        "role": "financialadvisor"
+        "role": "financialAdvisor"
     }]
 }, {
     "userName": "lender",

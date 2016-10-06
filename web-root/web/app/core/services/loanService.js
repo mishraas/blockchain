@@ -22,6 +22,13 @@
 
                 };
 
+                var LOAN_STATES = {
+                    'pendingConsent': 'pendingConsent',
+                    'pendingAcknowledgement': 'pendingAcknowledgement',
+                    'pendingApproval': 'pendingApproval',
+                    'approved': 'approved'
+                };
+
                 function getUsesOfLoanProceeds() {
                     return $http.get(REQUEST_URL.getUsesOfLoanProceeds);
                 }
@@ -60,6 +67,10 @@
                     return totalCollateralAmount;
                 }
 
+                function getLoanStates() {
+                    return LOAN_STATES;
+                }
+
                 return {
                     getUsesOfLoanProceeds: getUsesOfLoanProceeds,
                     getCurrentRate: getCurrentRate,
@@ -69,6 +80,7 @@
                     getLoanList: getLoanList,
                     getLoanDetails: getLoanDetails,
                     calculateTotalCollateralAmount: calculateTotalCollateralAmount,
+                    getLoanStates: getLoanStates,
                     loanAmount: 0,
                     collateralAccountList: [],
                     selectedAccountList: []

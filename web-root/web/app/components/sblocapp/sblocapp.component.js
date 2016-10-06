@@ -16,7 +16,7 @@
         templateUrl: 'sblocapp/sblocapp.html',
         controller: sblocappController,
         $routeConfig: [{
-            path: '/loandetails',
+            path: '/loandetails/',
             name: 'LoanDetails',
             component: 'loanDetails'
         },{

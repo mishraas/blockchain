@@ -14,8 +14,8 @@
     > thead {
         > tr {
             th {
-            font-size:13px!important;
-            text-align: inherit!important;
+                font-size: 13px!important;
+                text-align: inherit!important;
             }
         }
     }
@@ -29,6 +29,9 @@
         color: black;
         border: 1px solid darkgrey;
         border-radius: 4px;
+    }
+    li:hover {
+        background: #d6eaf8
     }
 }
 

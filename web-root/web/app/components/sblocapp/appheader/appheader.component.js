@@ -23,17 +23,18 @@
                 $ctrl.menuItems = [{
                     name: 'LoanListing',
                     title: ' Home',
-                    icon:  'glyphicon glyphicon-home'
-                },{
+                    icon: 'glyphicon glyphicon-home'
+                }, {
                     name: 'LoanDetails',
                     title: ' Loan Details',
-                    icon:  'glyphicon glyphicon-list'
-                } ];
+                    icon: 'glyphicon glyphicon-list'
+                }];
 
                 var currentUser = userService.getLoggedInUser();
                 $ctrl.loginInfo = {
                     userId: currentUser && currentUser.userName,
                     userName: currentUser && currentUser.userName,
+                    fullName: (currentUser && currentUser.firstName) + ' ' + (currentUser && currentUser.lastName),
                     logoutLink: 'logout'
                 };
             } else {
@@ -48,7 +49,7 @@
             updateHeaderMenu(true);
         });
 
-         $rootScope.$on('navButton', function(event,data) {
+        $rootScope.$on('navButton', function(event, data) {
             $ctrl.hideNavButtonFlag = data.status;
         });
 

@@ -130,7 +130,6 @@
             });
         };
         $ctrl.saveLoan = function() {
-
             var loanStatus = {
                 id: 'pendingConsent',
                 value: 'Pending For Constent'

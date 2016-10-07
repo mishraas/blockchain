@@ -3,7 +3,6 @@
 (function() {
     var appheaderController = function(userService, $router, $rootScope, $location) {
         var $ctrl = this;
-        console.log("ROUTER APPHEADER", $router);
         $ctrl.logout = function(event) {
             event.preventDefault();
             userService.logout().then(function() {

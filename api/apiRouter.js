@@ -5,81 +5,28 @@ var jwt = require('jsonwebtoken');
 var config = require('../config');
 
 /* Load mock JSON data */
-var usersList = require('./models/usersList');
-var loanReasonsData = require("./models/useOfLoans"); 
-var loanListData = require("./models/loanList");
+var loanReasonsData = require('./models/useOfLoans'); 
+var loanListData = require('./models/loanList');
 
+var blockchain = require('./modules/blockchain.js')(loanListData);
 var router = express.Router();
 var app = express();
 
-
 app.set('superSecret', config.secret);
-
-function getLoanDetailsById(loanId){
-    var loanList = loanListData.loanList;
-    var loan = null;
-    loanList.some(function(item){        
-        if(loanId && item.id === loanId){
-            loan = item;
-            return true;
-        }
-    });
-    return loan;
-}
-
-function performUserAction(loanId, action){
-    var isSuccess = false;
-    loanListData.loanList.some(function(item){        
-        if(loanId && item.id === loanId){
-            if(action === "approve"){
-                item.status = 'approved';
-                isSuccess= true;
-            } else if(action === "acknowledge"){
-                 item.status = 'pendingApproval';
-                 isSuccess= true;
-            } else if(action === "sendForConsent"){
-                 item.status = 'pendingAcknowledgement';
-                 isSuccess= true;
-            }
-            return true;
-        }
-    });
-    return isSuccess;
-};
 
 // route to authenticate a user on login (POST http://localhost:8080/api/authenticate)
 router.post('/authenticate', function(req, res) {
-    var authenticUser;
-
-    /* compares the mocked username and password with those provided by user from login screen */
-    function authenticateUser(requestObj){
-        // flag to confirm user validity
-        var isValidUser = false;
-        var reqUsername = requestObj.userName;
-        var reqPassword = requestObj.password;
-        
-        // match username and password
-        usersList.some(function(item){        
-            if(item.userName === reqUsername && item.password === reqPassword){
-                isValidUser = true;
-                authenticUser = item;
-                return true; // break loop iteration
-            }
-        });
-        return isValidUser;
-    }
-    
-    if (!usersList) {
-        res.json({ success: false, message: 'Server error.' });
-    } else if (usersList) { 
-        var isValid = authenticateUser(req.body);
-        if (!isValid) {
+    var result = blockchain.authenticateUser(req.body);
+    if (result && (result.success === false)) {
+        res.json({success: false, message: 'Server error'});
+    } else{  
+        if (!result.isValid) {
             res.json({ success: false, message: 'Authentication failed. Invalid username, password.' });
         } else {
             // if user is found and password is right
             // create a token
             var tokenExpiry = 1440;
-            var token = jwt.sign(authenticUser, app.get('superSecret'), {
+            var token = jwt.sign(result.authenticUser, app.get('superSecret'), {
                 expiresIn: tokenExpiry // expires in 24 hours
             });
 
@@ -89,11 +36,11 @@ router.post('/authenticate', function(req, res) {
                 message: 'Authenticated Successfully',
                 token: token,
                 tokenExpiry: tokenExpiry,
-                userName: authenticUser.userName,
-                firstName: authenticUser.firstName,
-                lastName: authenticUser.lastName,
-                emailId: authenticUser.emailId,
-                roles: authenticUser.roles
+                userName: result.authenticUser.userName,
+                firstName: result.authenticUser.firstName,
+                lastName: result.authenticUser.lastName,
+                emailId: result.authenticUser.emailId,
+                roles: result.authenticUser.roles
             });
         }
     }
@@ -151,83 +98,8 @@ router.post('/logout', function(req, res) {
 });
 
 router.post('/saveLoanData', function(req, res) {
-    var newLoanId;
-    var request = (req.body ? req.body : null);
-    
-    function generateNewLoanId(){
-         return (Math.floor(1000 + Math.random() * 9000));
-    }
-
-    function updateLoanDataWithNewLoan(){    
-         newLoanId = "LN"+generateNewLoanId();
-         var newLoan = {
-            "id": newLoanId,
-            "loanAmount": request.loanAmount,
-            "useOfLoanProceeds": request.useOfLoanProceeds,
-            "rateOfInterest": request.rateOfInterest,
-            "libor": request.libor,
-            "spread": request.spread,
-            "custodian": request.custodian,
-            "broker": request.broker,
-             "collateralAccounts": request.collateralAccounts,
-            "collateralPositions": request.collateralPositions,
-            "borrower": request.borrower,
-            "collateralValue": request.collateralValue,
-            "status": "pendingConsent",
-            "creditLimit": "creditLimit",
-            "outstanding": "25000",
-            "creditLineExcess": "creditLineExcess",
-            "amountAvailableToBorrow": "14000",
-            "marginCallAmount": "0",
-            "marginCallDueDate": "NA",
-            "marketValue": "marketValue",
-            "lendableValue": "lendableValue",
-            "excess": "excess",
-            "deficit": "deficit",
-            "lenderName": "lenderName",
-            "lenderAddress": "street abc xyz"
-        };
-
-        loanListData.loanList.push(newLoan);    
-    }
-
-    function updateLoanDataWithExistingLoan(loanId){       
-        loanListData.loanList.some(function(item){        
-            if(loanId && item.id === loanId){
-                item.loanAmount = request.loanAmount;
-                item.useOfLoanProceeds = request.useOfLoanProceeds;
-                item.rateOfInterest = request.rateOfInterest;
-                item.libor = request.libor;
-                item.spread = request.spread;
-                item.custodian = request.custodian;
-                item.broker = request.broker;
-                item.collateralAccounts = request.collateralAccounts;
-                item.collateralPositions = request.collateralPositions;
-                item.borrower = request.borrower;
-                item.collateralValue = request.collateralValue;
-                return true;
-            }
-        });
-    }
-
-    function checkForNewLoan(){
-         if(request !== null){
-            return (!request.id || request.id === null ? true : false);
-         } else {
-                res.json({
-                success: false,
-                message: 'Error form not saved.'
-            });
-         }
-    }
-
-    var isNewLoan = checkForNewLoan();
-    isNewLoan === true ?  updateLoanDataWithNewLoan() : updateLoanDataWithExistingLoan(request.id);
-    res.json({
-        success: true,
-        loanId :  newLoanId,
-        message: 'form saved successfully'
-    });
+    var result = blockchain.saveLoanData(req);
+    res.json(result);
 });
 
 router.get('/getUsesOfLoanProceeds', function(req, res) {
@@ -250,23 +122,23 @@ router.get('/getLoanList', function(req, res) {
 });
 
 router.get('/getLoanDetails/:loanId', function(req, res) {
-    var loan = getLoanDetailsById(req.params.loanId);
+    var loan = blockchain.getLoanDetailsById(req.params.loanId);
     res.send(loan);
 });
 
 router.post('/approveLoanData', function(req, res) {
-    var resp = performUserAction(req.body.loanId, req.body.action);
+    var resp = blockchain.performUserAction(req.body.loanId, req.body.action);
     res.send({ success: resp });
 });
 
 router.post('/acknowledgeLoanData', function(req, res) {
-    var resp =  performUserAction(req.body.loanId, req.body.action);
+    var resp =  blockchain.performUserAction(req.body.loanId, req.body.action);
     res.send({ success: resp });
 });
 
 router.post('/sendConsent', function(req, res) {
-    var resp =  performUserAction(req.body.loanId, req.body.action);
-     res.send({ success: resp });
+    var resp =  blockchain.performUserAction(req.body.loanId, req.body.action);
+    res.send({ success: resp });
 });
 ////************* Delete it after use
 router.get('/setup', function(req, res) {

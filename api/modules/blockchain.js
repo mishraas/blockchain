@@ -64,31 +64,8 @@ module.exports = function(loanListData) {
 		    }
 
 		    function setNewLoandetails(loanId){
-		    	newLoan.id = loanId,
-	            newLoan.loanAmount = request.loanAmount,
-	            newLoan.useOfLoanProceeds = request.useOfLoanProceeds,
-	            newLoan.rateOfInterest = request.rateOfInterest,
-	            newLoan.libor = request.libor,
-	            newLoan.spread = request.spread,
-	            newLoan.custodian = request.custodian,
-	            newLoan.broker = request.broker,
-	            newLoan.collateralAccounts = request.collateralAccounts,
-	            newLoan.collateralPositions = request.collateralPositions,
-	            newLoan.borrower = request.borrower,
-	            newLoan.collateralValue = request.collateralValue,
-	            newLoan.status = "pendingConsent",
-	            newLoan.creditLimit = "creditLimit",
-	            newLoan.outstanding = "25000",
-	            newLoan.creditLineExcess = "creditLineExcess",
-	            newLoan.amountAvailableToBorrow = "14000",
-	            newLoan.marginCallAmount = "0",
-	            newLoan.marginCallDueDate = "NA",
-	            newLoan.marketValue = "marketValue",
-	            newLoan.lendableValue = "lendableValue",
-	            newLoan.excess = "excess",
-	            newLoan.deficit = "deficit",
-	            newLoan.lenderName = "lenderName",
-	            newLoan.lenderAddress = "street abc xyz"
+		    	newLoan = request;
+		    	newLoan.id = loanId;
 		    }
 
 		    function updateLoanDataWithNewLoan(){ 
@@ -98,7 +75,7 @@ module.exports = function(loanListData) {
 		        return {
 			        success: true,
 			        loanId : newLoanId,
-			        message: 'form saved successfully'
+			        message: 'Loan saved successfully'
 			    };   
 		    }
 
@@ -121,8 +98,8 @@ module.exports = function(loanListData) {
 		        });
 		        return {
 			        success: true,
-			        loanId : newLoanId,
-			        message: 'form saved successfully'
+			        loanId : loanId,
+			        message: 'Loan saved successfully'
 			    }; 
 		    }
 

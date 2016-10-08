@@ -76,5 +76,5 @@
   },
   "custodian": {},
   "broker": {},
-  "liber": "1 month Libor"
+  "libor": "1 month Libor"
 }

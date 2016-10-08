@@ -129,13 +129,27 @@
                 }, 10000);
             });
         };
+
+        function setMockValuesForNewLoan(){
+            // used for setting the mock values in the saveloan request object
+            // tobe removed in future
+            $ctrl.loan.status = "pendingConsent";
+            $ctrl.loan.creditLimit = "creditLimit";
+            $ctrl.loan.outstanding = "21000";
+            $ctrl.loan.creditLineExcess = "creditLineExcess";
+            $ctrl.loan.amountAvailableToBorrow = "10000";
+            $ctrl.loan.marginCallAmount = "0";
+            $ctrl.loan.marginCallDueDate = "NA";
+            $ctrl.loan.marketValue = "marketValue";
+            $ctrl.loan.lendableValue = "lendableValue";
+            $ctrl.loan.excess = "excess";
+            $ctrl.loan.deficit = "deficit";
+            $ctrl.loan.lenderName = "lenderName";
+            $ctrl.loan.lenderAddress = "lenderAddress";
+        }
+
         $ctrl.saveLoan = function() {
-            var loanStatus = {
-                id: 'pendingConsent',
-                value: 'Pending For Constent'
-            };
-            var status = new EntityMapper(LoanStatus).toRaw(loanStatus);
-            $ctrl.loan.status = status;
+            setMockValuesForNewLoan();
             loanService.saveLoanData($ctrl.loan).then(function(response) {
                 if (response.data.success) {
                     $location.hash('form-message');

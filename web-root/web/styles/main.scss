@@ -114,17 +114,18 @@ a:hover {
     background: #337ab7 !important;
 }
 
-.table-striped > tbody > tr:nth-of-type(even) {
-    background-color: #f9f9f9!important;
-}
-
 .panel-default-height {
     min-height: 258px;
 }
 .default-height{
     min-height: 110px;
 }
-
+.app-panel-body{
+   height: 280px;
+   padding: 10px;
+   overflow-y: auto;
+   overflow-x: hidden;
+}
 @keyframes fademessage {
     from {
         opacity: 1
